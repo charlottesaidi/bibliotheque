@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation, useMatches } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { get } from '@services/api/ViewerService';
 import Loader from '@components/Loader';
 import ErrorAlert from '@components/ErrorAlert';
@@ -14,11 +14,13 @@ const Book: React.FC = () => {
     const pathnames = location.pathname.split('/');
     const slugParam = pathnames[pathnames.length - 1];
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchBook = async () => {
             const response = await get('/book', {routeParam: slugParam});
             if (response.error) {
-                setError(response.error);
+                response.code == '404' ? navigate('/not-found') : setError(response.error);
             } else if (response.data) {
                 setBook(response.data);
                 setError('');

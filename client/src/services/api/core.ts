@@ -8,6 +8,7 @@ export interface IResponse {
     success?: boolean;
     data?: any;
     error?: any;
+    code?: any;
 }
 
 export interface RequestOptions {
@@ -19,27 +20,34 @@ export interface RequestOptions {
 axios.interceptors.response.use((response) => {
     return response;
 }, (error) => {
-    let message;
+    const errorResponse = {
+        message: '',
+        code: 0
+    };
     if (error && error.response && error.response.status === 403) {
         window.location.href = '/forbidden';
     } else {
         switch (error.response.status) {
             case 400:
-                message = 'Une erreur est survenue';
+                errorResponse.code = 400;
+                errorResponse.message = 'Une erreur est survenue';
                 break;
             case 401:
-                message = 'Identifiants ou mot de passe invalide';
+                errorResponse.code = 401;
+                errorResponse.message = 'Identifiants ou mot de passe invalide';
                 break;
             case 403:
-                message = 'Accès refusé';
+                errorResponse.code = 403;
+                errorResponse.message = 'Accès refusé';
                 break;
             case 404:
-                message = 'La bibliothèque est vide';
+                errorResponse.code = 404;
+                errorResponse.message = 'La bibliothèque est vide';
                 break;
             default:
-                message = error.response && error.response.data ? error.response.data['message'] : error.message || error;
+                errorResponse.message = error.response && error.response.data ? error.response.data['message'] : error.message || error;
         }
-        return Promise.reject(message);
+        return Promise.reject(errorResponse);
     }
 });
 

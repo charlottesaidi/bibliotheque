@@ -18,7 +18,8 @@ export const get = async (apiPath: string, options: RequestOptions ) => {
                     response['success'] = true;
                     options.storageKey && sessionStorage.setItem(options.storageKey, JSON.stringify(res.data));
                 }).catch(err => {
-                        response['error'] = err && err.response && err.response.data ? err.response.data : err.response || err;
+                        response['code'] = err && err.code || err;
+                        response['error'] = err && err.message|| err;
                 });
             }
     } catch (err: any) {
