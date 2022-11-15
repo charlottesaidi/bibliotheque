@@ -7,8 +7,8 @@ const NotFound: React.FC = () => {
         <>
             <Error 
                 code={404} 
-                title={"Page not found"} 
-                message={"The page you are looking for doesn't exist or has been removed."} 
+                title={"Page introuvable"}
+                message={"La page n'existe pas ou a été supprimée."}
             />
         </>
     )

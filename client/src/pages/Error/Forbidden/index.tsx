@@ -8,7 +8,7 @@ const Forbidden: React.FC = () => {
             <Error 
                 code={403} 
                 title={"Forbidden"} 
-                message={"Not allowed in admin section"} 
+                message={"C'est mon coin, tu n'as rien a faire ici..."}
             />
         </>
     )

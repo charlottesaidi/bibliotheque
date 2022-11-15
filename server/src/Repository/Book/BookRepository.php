@@ -90,7 +90,7 @@ class BookRepository extends ServiceEntityRepository
    /**
     * @return Book Returns an array of Book objects
     */
-   public function findOneBySlug(string $slug): Book
+   public function findOneBySlug(string $slug): ?Book
    {
        return $this->createQueryBuilder('b')
            ->andWhere('b.slug = :slug')
