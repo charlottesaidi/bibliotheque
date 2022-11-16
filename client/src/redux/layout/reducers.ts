@@ -15,7 +15,7 @@ import { getLayoutConfigs } from '@utils/layout';
 
 const INIT_STATE = {
     layoutWidth: LayoutWidth.LAYOUT_WIDTH_FLUID,
-    leftSideBarType: SideBarTypes.LEFT_SIDEBAR_TYPE_DEFAULT,
+    leftSideBarType: SideBarTypes.LEFT_SIDEBAR_TYPE_CONDENSED,
     showTwoToneIcons: false,
     showSidebarUserInfo: false,
     isOpenRightSideBar: false,

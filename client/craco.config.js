@@ -18,7 +18,7 @@ module.exports = {
     },
     plugins: {
         entry: {
-            main: './src/index.tsx',
+            main: './src/ForbiddenPage.tsx',
             'pdf.worker': path.join(__dirname, './node_modules/pdfjs-dist/build/pdf.worker.js'),
         },
         output: {

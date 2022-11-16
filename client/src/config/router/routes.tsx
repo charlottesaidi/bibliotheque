@@ -2,13 +2,13 @@ import React from "react";
 import {RoutesProps} from "./router.config";
 
 import RootScreen from "@components/Layout/Root";
-import NotFound from "@pages/Error/NotFound";
+import NotFound from "@pages/Error/NotFoundPage";
 import Home from "@pages/Home";
-import Books from "@pages/Viewers/Books";
 import Dashboard from "@pages/Admin/Dashboard";
-import Book from "@pages/Viewers/Books/Book";
 import NewBook from "@pages/Admin/Upload/NewBook";
 import ListingIndex from "@pages/Admin/ListingIndex";
+import GalleryIndex from "@pages/Viewers/GalleryIndex";
+import Viewer from "@pages/Viewers/Viewer";
 
 export const routes: RoutesProps[] = [
     {
@@ -19,8 +19,8 @@ export const routes: RoutesProps[] = [
         children: [
             {path: '/', name: 'Accueil', element: <Home/>},
             {path: '/books', name: 'eBooks', children: [
-                    {path: '/books', element: <Books/>},
-                    {path: '/books/:slug', element: <Book/>}
+                    {path: '/books', element: <GalleryIndex apiPath={'/books'} storageKey={'books'} filterStorageKey={'filteredBooks'} galleryCategory={'livres'}/>},
+                    {path: '/books/:slug', element: <Viewer apiPath={'/book'} />}
                 ]
             },
         ],
@@ -40,4 +40,4 @@ export const routes: RoutesProps[] = [
         ],
         errorElement: <NotFound/>
     }
-] ;
+];

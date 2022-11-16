@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState} from "@redux/store";
 import {changeSidebarType} from "@redux/layout/actions";
 import {SideBarTypes} from "@constants/layout";
-// import {routes} from "@config/routes";
 import {routes} from "@config/router/routes";
 import DesktopNav from "@components/Header/Nav/DesktopNav";
 import MobileNav from "@components/Header/Nav/MobileNav";

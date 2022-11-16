@@ -1,25 +1,32 @@
-import React, { useEffect } from 'react';
-import Gallery from '@components/Gallery';
-import { get } from '@services/api/ViewerService';
-import Loader from '@components/Loader';
-import ErrorAlert from '@components/ErrorAlert';
-import Filter from "@components/Form/Filter";
+import React, {useEffect} from "react";
 import {RequestOptions} from "@services/api/core";
-import CollapsibleItem from "@components/Collapsible/CollapsibleItem";
+import {get} from "@services/api/ViewerService";
 import Collapsible from "@components/Collapsible";
+import CollapsibleItem from "@components/Collapsible/CollapsibleItem";
+import Filter from "@components/Form/Filter";
+import Loader from "@components/Loader";
+import Gallery from "@components/Gallery";
+import ErrorAlert from "@components/ErrorAlert";
 
-const Books: React.FC = () => {
-    const [books, setBooks] = React.useState<any>();
+interface fetchResources {
+    apiPath: string,
+    storageKey: string,
+    filterStorageKey: string,
+    galleryCategory?: string
+}
+
+const GalleryIndex = ({...props}: fetchResources) => {
+    const [resources, setResources] = React.useState<any>();
     const [error, setError] = React.useState<any>();
     const [loading, setLoading] = React.useState(true);
 
-    const fetchBooks = async (options: RequestOptions) => {
-        const response = await get('/books', options);
+    const fetchResources = async (options: RequestOptions) => {
+        const response = await get(props.apiPath, options);
 
         if (response.error) {
             setError(response.error);
         } else if (response.data) {
-            setBooks(response.data);
+            setResources(response.data);
             setError('');
         }
         setLoading(false);
@@ -31,15 +38,16 @@ const Books: React.FC = () => {
             .filter((key: keyof typeof data) => Boolean(data[key]))
             .reduce((acc, key) => ({...acc, ...{[key]: data[key]}}), {});
 
-        fetchBooks({storageKey: 'filteredBooks', apiParams: filters});
+        fetchResources({storageKey: props.filterStorageKey, apiParams: filters});
     }
 
     const onReset = () => {
-        setBooks(JSON.parse(sessionStorage.getItem('books') || '{}'))
+        sessionStorage.removeItem(props.filterStorageKey)
+        setResources(JSON.parse(sessionStorage.getItem(props.storageKey) || '{}'))
     }
 
     useEffect(() => {
-        fetchBooks({storageKey: 'books'})
+        fetchResources({storageKey: props.storageKey})
     }, []);
 
     return (
@@ -64,11 +72,11 @@ const Books: React.FC = () => {
 
             {
                 loading ? <Loader/> :
-                    !error ? <Gallery items={books} category="livres"/> :
-                    <ErrorAlert message={error}/>
+                    !error ? <Gallery items={resources} category={props.galleryCategory || ''}/> :
+                        <ErrorAlert message={error}/>
             }
         </>
     )
-};
+}
 
-export default Books;
+export default GalleryIndex;
