@@ -1,16 +1,14 @@
 import React from "react";
 import {RoutesProps} from "./router.config";
 
+import RootScreen from "@components/Layout/Root";
 import NotFound from "@pages/Error/NotFound";
 import Home from "@pages/Home";
 import Books from "@pages/Viewers/Books";
-import AdminHome from "@pages/Admin/Home";
-import AdminBooks from "@pages/Admin/Books";
+import Dashboard from "@pages/Admin/Dashboard";
 import Book from "@pages/Viewers/Books/Book";
-import AdminMovies from "@pages/Admin/Movies";
-import AdminShows from "@pages/Admin/Shows";
-import RootScreen from "@components/Layout/Root";
-import NewBook from "@pages/Admin/Books/New";
+import NewBook from "@pages/Admin/Upload/NewBook";
+import ListingIndex from "@pages/Admin/ListingIndex";
 
 export const routes: RoutesProps[] = [
     {
@@ -34,11 +32,11 @@ export const routes: RoutesProps[] = [
         element: <RootScreen/>,
         icon: 'folder',
         children: [
-            {path: '/admin', name: 'Dashboard', element: <AdminHome/>},
-            {path: '/admin/books', name: 'eBooks', element: <AdminBooks/>},
+            {path: '/admin', name: 'Dashboard', element: <Dashboard/>},
+            {path: '/admin/books', name: 'eBooks', element: <ListingIndex path={'/books'} key={'books'} appUploadPath={'/admin/books/new'}/>},
             {path: '/admin/books/new', element: <NewBook/>},
-            {path: '/admin/movies', name: 'Films', element: <AdminMovies/>},
-            {path: '/admin/shows', name: 'Séries', element: <AdminShows/>},
+            {path: '/admin/movies', name: 'Films', element:  <ListingIndex path={'/movies'} key={'movies'}/>},
+            {path: '/admin/shows', name: 'Séries', element:  <ListingIndex path={'/shows'} key={'shows'}/>},
         ],
         errorElement: <NotFound/>
     }

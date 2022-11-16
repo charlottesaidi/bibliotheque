@@ -5,8 +5,8 @@ import { isAdmin } from '@services/api/auth/AuthenticationService';
 import {Link, useNavigate} from 'react-router-dom';
 import folderIcon from '@assets/images/svgs/folder.svg';
 
-const AdminHome: React.FC = () => {
-	const admin = isAdmin(sessionStorage.getItem('token'));
+const Dashboard: React.FC = () => {
+    const admin = isAdmin(sessionStorage.getItem('token'));
     const navigate = useNavigate();
 
     const [folders, setFolders] = React.useState<Array<any>>();
@@ -37,7 +37,7 @@ const AdminHome: React.FC = () => {
 
     return (
 
-            <div className="px-5">
+        <div className="px-5">
             {
                 loading ? <Loader/> :
                     !error ?
@@ -53,12 +53,12 @@ const AdminHome: React.FC = () => {
                                 </p>
                             ))}
                         </div>)
-                     :
+                        :
                         <ErrorAlert message={error}/>
             }
-            </div>
+        </div>
 
     )
 };
 
-export default AdminHome;
+export default Dashboard;
