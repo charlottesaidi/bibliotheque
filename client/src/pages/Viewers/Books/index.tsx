@@ -3,7 +3,7 @@ import Gallery from '@components/Gallery';
 import { get } from '@services/api/ViewerService';
 import Loader from '@components/Loader';
 import ErrorAlert from '@components/ErrorAlert';
-import Filter from "@components/Filter";
+import Filter from "@components/Form/Filter";
 import {RequestOptions} from "@services/api/core";
 import CollapsibleItem from "@components/Collapsible/CollapsibleItem";
 import Collapsible from "@components/Collapsible";

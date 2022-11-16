@@ -38,9 +38,10 @@ const Menu = (routes: RoutesProps[], dataCollapseParent: string) => {
                     >
                         <>
                             {
-                                route.children.map((child, i) => (
-                                    <LinkNav route={child} key={i+'-'+child.name} linkClasses={'text-sm'}/>
-                                ))
+                                route.children.filter((child) => child.name !== undefined)
+                                    .map((child, i) => (
+                                        <LinkNav route={child} key={i+'-'+child.name} linkClasses={'text-sm'}/>
+                                    ))
                             }
                         </>
                     </CollapsibleItem>

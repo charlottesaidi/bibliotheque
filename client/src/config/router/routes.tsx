@@ -10,6 +10,7 @@ import Book from "@pages/Viewers/Books/Book";
 import AdminMovies from "@pages/Admin/Movies";
 import AdminShows from "@pages/Admin/Shows";
 import RootScreen from "@components/Layout/Root";
+import NewBook from "@pages/Admin/Books/New";
 
 export const routes: RoutesProps[] = [
     {
@@ -35,6 +36,7 @@ export const routes: RoutesProps[] = [
         children: [
             {path: '/admin', name: 'Dashboard', element: <AdminHome/>},
             {path: '/admin/books', name: 'eBooks', element: <AdminBooks/>},
+            {path: '/admin/books/new', element: <NewBook/>},
             {path: '/admin/movies', name: 'Films', element: <AdminMovies/>},
             {path: '/admin/shows', name: 'Séries', element: <AdminShows/>},
         ],

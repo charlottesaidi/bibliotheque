@@ -1,9 +1,9 @@
 import React, {FC, useEffect, useState} from "react";
 import Button from "@components/Button";
 import {get} from "@services/api/ViewerService";
-import Input from "@components/FormFields/Input";
+import Input from "@components/Form/FormFields/Input";
 import {useForm} from "react-hook-form";
-import Select from "@components/FormFields/Select";
+import Select from "@components/Form/FormFields/Select";
 
 interface FilterProps {
     onFilter: any,
@@ -66,10 +66,10 @@ const Filter: FC<FilterProps> = ({onFilter, onReset}) => {
                 <div className="flex flex-wrap sm:justify-end justify-center w-full mt-6">
             
                     <div className="mx-1 my-1">
-                        <Button buttonLabel={'Réinitialiser'} buttonRole={'secondary'} onclick={() => {onReset(); reset()}}></Button>
+                        <Button buttonLabel={'Réinitialiser'} buttonRole={'secondary'} onclick={() => {onReset(); reset()}}/>
                     </div>
                     <div className="mx-1 my-1">
-                        <Button buttonRole={"primary"} buttonType={"submit"} buttonLabel={"Rechercher"}></Button>
+                        <Button buttonRole={"primary"} buttonType={"submit"} buttonLabel={"Rechercher"}/>
                     </div>
             
                 </div>

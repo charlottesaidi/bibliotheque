@@ -3,6 +3,7 @@ import List from "@components/List";
 import Loader from "@components/Loader";
 import ErrorAlert from "@components/ErrorAlert";
 import {get} from "@services/api/ViewerService";
+import Button from "@components/Button";
 
 const AdminBooks: React.FC = () => {
     const [files, setFiles] = React.useState<Array<any>>();
@@ -33,8 +34,14 @@ const AdminBooks: React.FC = () => {
         <>
             {
                 loading ? <Loader/> :
-                    !error ? <List items={files}/> :
-                        <ErrorAlert message={error}/>
+                    !error ?
+                        <>
+                            <div className={'flex flex-row justify-end items-center py-1 sm:px-6 lg:px-8'}>
+                                <Button buttonLabel={'+'} buttonRole={'primary'} buttonLink={'/admin/books/new'} />
+                            </div>
+                            <List items={files}/>
+                        </>
+                        : <ErrorAlert message={error}/>
             }
         </>
     )

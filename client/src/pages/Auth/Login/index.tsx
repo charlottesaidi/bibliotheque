@@ -5,7 +5,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import { loginUser } from "@services/api/auth/AuthenticationService";
 import Loader from "@components/Loader";
-import Input from "@components/FormFields/Input";
+import Input from "@components/Form/FormFields/Input";
 import {FieldValues, useForm} from "react-hook-form";
 
 interface Props {
