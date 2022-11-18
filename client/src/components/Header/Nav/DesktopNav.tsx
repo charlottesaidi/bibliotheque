@@ -7,14 +7,14 @@ import Menu from "@components/Header/Nav/Menu";
 
 const DesktopNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: any) => {
     return (
-        <nav id="header" className={`hidden sm:flex flex-col justify-between bg-slate-100 text-slate-600 shadow-lg fixed z-10 left-0 h-full transition-all duration-300 sm:w-250 p-8`}>
+        <nav id="header" className={`hidden sm:flex flex-col justify-between shadow-lg fixed z-10 left-0 h-full transition-all duration-300 sm:w-250 p-8`}>
             <ul className="w-full flex sm:flex-col items-start justify-around">
                 <li className="w-full pb-8 flex justify-between items-center">
-                  <span id="logo" className="flex title-font items-center text-gray-900 mb-0">
+                  <span id="logo" className="flex title-font items-center mb-0">
                     <Logo></Logo>
                   </span>
 
-                    <button onClick={toggleLeftSidebarWidth} className="nav-link block pl-3 hover:bg-orange-200/20">
+                    <button onClick={toggleLeftSidebarWidth} className="nav-link flex p-3 hover:bg-orange-200/20">
                         <MenuButton></MenuButton>
                     </button>
                 </li>

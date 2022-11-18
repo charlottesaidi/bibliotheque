@@ -20,16 +20,16 @@ const List: FC<ListProps> = ({items, uploadUrl}) => (
                     <table className="min-w-full">
                         <thead className="border-b text-left">
                             <tr>
-                                <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-2">
+                                <th scope="col" className="text-sm font-medium px-6 py-2">
                                     Nom
                                 </th>
-                                <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-2">
+                                <th scope="col" className="text-sm font-medium px-6 py-2">
                                     Date de création
                                 </th>
-                                <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-2">
+                                <th scope="col" className="text-sm font-medium px-6 py-2">
                                     Type
                                 </th>
-                                <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-2">
+                                <th scope="col" className="text-sm font-medium px-6 py-2">
                                     Taille
                                 </th>
                             </tr>
@@ -41,7 +41,7 @@ const List: FC<ListProps> = ({items, uploadUrl}) => (
                                         <ListItem key={item.id} item={item}></ListItem>
                                     )) :
                                         <tr>
-                                            <td className="text-sm text-gray-600 font-light px-6 py-2 whitespace-nowrap">La bibliothèque est vide</td>
+                                            <td className="text-sm font-light px-6 py-2 whitespace-nowrap">La bibliothèque est vide</td>
                                         </tr>
                             }
                         </tbody>

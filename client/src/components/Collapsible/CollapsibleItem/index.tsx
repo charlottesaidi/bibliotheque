@@ -51,6 +51,7 @@ const CollapsibleItem = ({...props}: CollapsibleItemProps) => {
 }
 
 const Button = styled.button`
+    &.accordion-button,
     &.accordion-button:not(.collapsed) {
         color: inherit;
         background-color: inherit;

@@ -29,7 +29,7 @@ const PaginatedGallery: FC<Props> = ({itemsPerPage, items, category}) => {
     setItemOffset(newOffset);
   };
 
-  const paginationLinksClassName = "block h-10 leading-10 align-middle px-5 hover:bg-orange-300"
+  const paginationLinksClassName = "block h-10 leading-10 align-middle px-5 primary-hover"
 
   return (
     <>
@@ -51,11 +51,11 @@ const PaginatedGallery: FC<Props> = ({itemsPerPage, items, category}) => {
             pageRangeDisplayed={5}
             pageCount={pageCount}
             previousLabel="<"
-            containerClassName={"flex flex-row justify-center items-center"}
+            containerClassName={"flex flex-row justify-center items-center mt-3"}
             pageLinkClassName={paginationLinksClassName}
             previousLinkClassName={paginationLinksClassName}
             nextLinkClassName={paginationLinksClassName}
-            activeLinkClassName={"text-white bg-orange-600"}
+            activeLinkClassName={"primary"}
             disabledClassName={'opacity-0'}
           /> : ''
 

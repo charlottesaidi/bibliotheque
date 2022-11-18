@@ -22,7 +22,7 @@ const Select: FC<Props> = ({containerClasses,inputLabel, inputName, options, reg
 
                 <select
                     id={inputName}
-                    className="appearance-none outline-none mt-0 block p-1.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-orange-600"
+                    className="appearance-none outline-none mt-0 block p-1.5 border-0 border-b-2 border-gray-400 focus:ring-0 focus:border-blue-600"
                     {...register ? register(inputName) : null}
                 >
                     {

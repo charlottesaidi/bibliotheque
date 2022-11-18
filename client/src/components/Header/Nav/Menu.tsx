@@ -2,11 +2,10 @@ import {RoutesProps} from "@config/router/router.config";
 import CollapsibleItem from "@components/Collapsible/CollapsibleItem";
 import LinkNav from "@components/Header/Link";
 import React from "react";
-import {useLocation, useMatches} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 const Menu = (routes: RoutesProps[], dataCollapseParent: string) => {
     const location = useLocation()
-    const matches = useMatches();
 
     const matchPath = (path: string) => {
         if(path == location.pathname.split('/')[1]) {
@@ -21,6 +20,7 @@ const Menu = (routes: RoutesProps[], dataCollapseParent: string) => {
             return route.children ?
                 (
                     <CollapsibleItem
+                        headingClasses={"py-2"}
                         key={index+'-'+route.name}
                         isOpen={matchPath(route.path || '')}
                         headingId={'heading_'+route.name}

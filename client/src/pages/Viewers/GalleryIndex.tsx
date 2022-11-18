@@ -62,7 +62,7 @@ const GalleryIndex = ({...props}: fetchResources) => {
                             dataBsParent={'search_accordion'}
                             headingId={'search_title'}
                             collapsibleId={'search_collapsible'}
-                            headingClasses={'bg-orange-600 text-white'}>
+                            headingClasses={'primary'}>
                             <Filter onFilter={search} onReset={() => onReset()} />
                         </CollapsibleItem>
                     }

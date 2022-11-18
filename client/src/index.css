@@ -5,104 +5,13 @@
 @tailwind utilities;
 
 :root {
-    --white-color: 255,255,255;
-    --theme-main: 234, 88, 12;
-    --header-bg: 255,255,255;
-}
-
-body::-webkit-scrollbar {
-    width: 10px;
-}
-body::-webkit-scrollbar-track {
-    background: rgb(var(--white-color));
-}
-body::-webkit-scrollbar-thumb {
-    background: rgb(var(--theme-main));
-}
-.nav-link {
-    height: 48px;
-}
-.xng-breadcrumb-trail {
-    color: rgb(var(--theme-main)) !important;
-}
-
-@media (min-width: 640px) {
-    .sm\:w-250 {
-        width: 15.625rem;
-    }
-    .sm\:ml-250 {
-        margin-left: 250px;
-    }
-    body[data-leftbar-size=condensed] .sm\:w-250 {
-        width: 4rem!important;
-        padding: 2rem 0;
-    }
-    body[data-leftbar-size=condensed] .sm\:w-250 li,
-    body[data-leftbar-size=condensed] .sm\:w-250 .nav-link,
-    body[data-leftbar-size=condensed] .sm\:w-250 .nav-link i {
-        width: 100%;
-    }
-    body[data-leftbar-size=condensed] nav .accordion-item .nav-link-label,
-    body[data-leftbar-size=condensed] .sm\:w-250 .logout-label,
-    body[data-leftbar-size=condensed] .sm\:w-250 #logo,
-    body[data-leftbar-size=condensed] nav .collapse.show {
-        display: none;
-    }
-    body[data-leftbar-size=condensed] .sm\:w-250 .nav-link {
-        padding: 0.5rem 1rem;
-    }
-    body[data-leftbar-size=condensed] nav .accordion-button::after,
-    body[data-leftbar-size=condensed] nav .accordion-button:not(.collapsed)::after {
-        content: initial;
-    }
-    body[data-leftbar-size=condensed] nav .accordion-item:hover {
-        width: 250px;
-        background: rgb(var(--header-bg));
-    }
-    body[data-leftbar-size=condensed] nav .accordion-item:hover .collapse.show,
-    body[data-leftbar-size=condensed] nav .accordion-item:hover .nav-link-label,
-    body[data-leftbar-size=condensed] nav .accordion-item:hover .collapse:not(.show) {
-        display: block;
-    }
-    body[data-leftbar-size=condensed] nav .accordion-item:hover .collapse.show,
-    body[data-leftbar-size=condensed] nav .accordion-item:hover .collapse:not(.show) {
-        position: absolute;
-        left: 64px;
-        width: calc(100% - 64px);
-        background: inherit
-    }
-    body[data-leftbar-size=condensed] nav .accordion-item:hover i.sm\:mr-3 {
-        margin: 0 2.26rem 0 0.75rem;
-    }
-    body[data-leftbar-size=condensed] .sm\:w-250 i.sm\:mr-3 {
-        padding: 0;
-        margin: auto;
-    }
-    body[data-leftbar-size=condensed] .sm\:ml-250 {
-        margin-left: 4rem !important;
-    }
-    .left-40 {
-        left: 80px !important;
-    }
-    .accordion-item:first-of-type {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
-    .accordion-item:last-of-type,
-    .accordion-item:last-of-type .accordion-collapse {
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 0;
-    }
-}
-
-@media (max-width: 640px) {
-    #main_container {
-        margin-bottom: 48px;
-    }
-    .xng-breadcrumb-link, .xng-breadcrumb-separator, .xng-breadcrumb-trail {
-        font-size: 0.8rem;
-    }
-    select {
-        font-size: 0.9rem;
-    }
+    --white-color: #ffffff;
+    --primary-color-bg: #3c9add;
+    --hover-primary-color-bg: #191452;
+    --accent-color-text: #3c9add;
+    --scrollbar-bg: #3c9add;
+    --scrollbar-color: #191452;
+    --header-bg: #191452;
+    --input-bg: #191452;
+    --text-active-color: #3c9add;
 }

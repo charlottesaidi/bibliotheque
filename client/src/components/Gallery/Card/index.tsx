@@ -16,7 +16,7 @@ const Card: FC<Props> = ({item, category}) => {
             
             <div className="absolute top-0 left-0 px-6 py-4 transition-all duration-300 bg-black/70 hover:bg-black/50 w-full h-full">
                 <h4 className="mb-3 text-xl font-semibold tracking-tight text-white">{item.title}</h4>
-                <p className="leading-normal text-gray-100">
+                <p className="leading-normal">
                     {item.author} <br/>
                     
                     {moment(item.publicationDate).format( 'YYYY')}
