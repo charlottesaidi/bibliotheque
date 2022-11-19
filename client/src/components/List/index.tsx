@@ -12,7 +12,7 @@ const List: FC<ListProps> = ({items, uploadUrl}) => (
         <div className="overflow-x-auto">
             <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
 
-                <div className={'flex justify-end items-center'}>
+                <div className={'flex items-center p-2'}>
                     <Button buttonLabel={'+'} buttonRole={'primary'} buttonLink={uploadUrl}/>
                 </div>
 

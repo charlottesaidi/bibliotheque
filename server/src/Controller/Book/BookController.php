@@ -35,6 +35,12 @@ class BookController extends AbstractController
         }
     }
 
+    #[Route('/book/create', name: 'api_create_book')]
+    public function create(Request $request): JsonResponse
+    {
+        return dd($request);
+    }
+
     #[Route('/book/{slug}', name: 'api_show_book')]
     public function show($slug): JsonResponse
     {

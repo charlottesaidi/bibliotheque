@@ -33,7 +33,7 @@ const Filter: FC<FilterProps> = ({onFilter, onReset}) => {
 
     return (
         <>
-            <form className="p-6" onSubmit={handleSubmit(onFilter)}>
+            <form className="p-6 card" onSubmit={handleSubmit(onFilter)}>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <Input
                         containerClasses={"flex flex-col"}

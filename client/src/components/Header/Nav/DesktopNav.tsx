@@ -14,7 +14,7 @@ const DesktopNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: 
                     <Logo></Logo>
                   </span>
 
-                    <button onClick={toggleLeftSidebarWidth} className="nav-link flex p-3 hover:bg-orange-200/20">
+                    <button onClick={toggleLeftSidebarWidth} className="nav-link flex p-3 hover:bg-cyan-200/20">
                         <MenuButton></MenuButton>
                     </button>
                 </li>
@@ -28,7 +28,7 @@ const DesktopNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: 
 
             </ul>
 
-            <button onClick={logOut} className="nav-link hover:bg-orange-200/20 flex items-center sm:justify-start p-2.5 w-full">
+            <button onClick={logOut} className="nav-link hover:bg-cyan-200/20 flex items-center sm:justify-start p-2.5 w-full">
                 <i className={'icon-logout sm:mr-3'}/>
                 <span className="nav-link-label logout-label">Déconnexion</span>
             </button>

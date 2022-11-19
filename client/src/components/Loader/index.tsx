@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 
 const Loader: FC = () => (
     <div className="flex justify-center items-center">
-        <div className="spinner-border animate-spin inline-block w-10 h-10 border-6 rounded-full primary-color-bg" role="status">
+        <div className="spinner-border animate-spin inline-block w-10 h-10 border-6 rounded-full text-active" role="status">
             <span className="visually-hidden">Loading...</span>
         </div>
     </div>

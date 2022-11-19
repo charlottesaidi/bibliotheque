@@ -5,13 +5,9 @@
 @tailwind utilities;
 
 :root {
-    --white-color: #ffffff;
-    --primary-color-bg: #3c9add;
-    --hover-primary-color-bg: #191452;
-    --accent-color-text: #3c9add;
-    --scrollbar-bg: #3c9add;
-    --scrollbar-color: #191452;
-    --header-bg: #191452;
-    --input-bg: #191452;
-    --text-active-color: #3c9add;
+    --text-color-theme: #cecece;
+    --primary-color: #0c7bad;
+    --secondary-color: #1E293B;
+    --accent-color-text: #0c7bad;
+    --text-active-color: #0c7bad;
 }

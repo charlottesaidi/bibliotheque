@@ -15,7 +15,7 @@ const MobileNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: a
 
             </ul>
 
-            <button onClick={logOut} className="nav-link hover:bg-orange-200/20 flex items-center justify-end p-2.5 w-full">
+            <button onClick={logOut} className="nav-link hover:bg-cyan-200/20 flex items-center justify-end p-2.5 w-full">
                 <i className={'icon-logout'}/>
             </button>
         </nav>

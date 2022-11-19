@@ -17,7 +17,7 @@ const Gallery: FC<Props> = ({pageTitle, items, category}) => {
       {
           pageTitle != null ? (
             <div className="flex w-full mb-10 flex-wrap">
-              <h2 className="sm:text-3xl text-2xl font-medium title-font mt-2">{pageTitle}</h2>
+              <h3 className="sm:text-3xl text-2xl font-medium title-font mt-2">{pageTitle}</h3>
             </div>
           ) : ('')
       }

@@ -21,8 +21,8 @@ const Button: React.FC<Props> = ({buttonLabel, buttonLink, buttonRole, buttonTyp
     const style: Style = {
         width: buttonType == 'submit' ? 'w-full' : '',
         textColor: buttonRole == 'primary' ? 'text-white' : 'secondary' ? 'text-stone-50' : 'success' ? 'text-green-50' : 'danger' ? 'text-red-50' : 'text-yellow-50',
-        backgroundColor: buttonRole == 'primary' ? 'primary' : 'secondary' ? 'bg-stone-600' : 'success' ? 'bg-green-600' : 'danger' ? 'bg-red-600' : 'bg-yellow-600',
-        hover_backgroundColor: buttonRole == 'primary' ? 'primary-hover' : 'secondary' ? 'hover:bg-stone-900' : 'success' ? 'hover:bg-green-900' : 'danger' ? 'hover:bg-red-900' : 'hover:bg-yellow-900',
+        backgroundColor: buttonRole == 'primary' ? 'primary' : 'secondary' ? 'bg-stone-400' : 'success' ? 'bg-green-600' : 'danger' ? 'bg-red-600' : 'bg-yellow-600',
+        hover_backgroundColor: buttonRole == 'primary' ? 'primary-hover' : 'secondary' ? 'hover:bg-stone-600' : 'success' ? 'hover:bg-green-900' : 'danger' ? 'hover:bg-red-900' : 'hover:bg-yellow-900',
     }
 
     if(buttonLink) {

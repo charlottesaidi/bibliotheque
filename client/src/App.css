@@ -1,17 +1,14 @@
 @import 'index.css';
 
 body {
-    color: var(--white-color)
+    color: var(--text-color-theme)
 }
 
 body::-webkit-scrollbar {
     width: 10px;
 }
 body::-webkit-scrollbar-track {
-    background: var(--scrollbar-bg);
-}
-body::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-color);
+    background: transparent;
 }
 .nav-link {
     height: 48px;
@@ -19,14 +16,14 @@ body::-webkit-scrollbar-thumb {
 .xng-breadcrumb-trail {
     color: var(--accent-color-text) !important;
 }
-input, textarea, select {
-    background: var(--input-bg)
+input, .input, textarea, select {
+    background: var(--secondary-color)
 }
 *.primary {
-    background-color: var(--primary-color-bg);
+    background-color: var(--primary-color);
 }
 *.primary-hover:hover {
-    background-color: var(--hover-primary-color-bg);
+    opacity: .5;
 }
 *.primary-link {
     color: var(--accent-color-text)
@@ -37,11 +34,14 @@ input, textarea, select {
 *.hover-svg-active:hover, *.hover-svg-active:hover>path {
     stroke: var(--text-active-color)
 }
-h2 {
-    opacity: 0.5
+h3 {
+    opacity: .7
 }
 #viewer {
     opacity: .7
+}
+.card {
+    background: var(--secondary-color);
 }
 
 @media (min-width: 640px) {
@@ -75,7 +75,7 @@ h2 {
     }
     body[data-leftbar-size=condensed] nav .accordion-item:hover {
         width: 250px;
-        background: var(--hover-primary-color-bg);
+        background: var(--secondary-color);
     }
     body[data-leftbar-size=condensed] nav .accordion-item:hover .collapse.show,
     body[data-leftbar-size=condensed] nav .accordion-item:hover .nav-link-label,
@@ -115,7 +115,7 @@ h2 {
 
 @media (max-width: 640px) {*
     nav.sm\:hidden {
-        background-color: var(--header-bg);
+        background-color: var(--primary-color);
         height: 64px;
     }
     nav.sm\:hidden button.nav-link {

@@ -6,7 +6,7 @@ import Router from "@config/router/Router";
 function App() {
 
 	return (
-		<div className="App min-h-screen bg-[radial-gradient(circle_at_bottom_right,#3c9add,#191452)]">
+		<div className="App min-h-screen bg-slate-900">
 			<RouterProvider router={Router} />
 		</div>
 	);
