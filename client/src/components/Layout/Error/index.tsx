@@ -21,7 +21,7 @@ const Error: React.FC<Props> = (props) => {
                     <h1 className="mt-5 text-[36px] font-bold lg:text-[50px]">{props.code} - {props.title}</h1>
                     <p className="mt-5 lg:text-lg">{props.message}</p>
                     <p className="primary-link mt-5 lg:text-lg">
-                        <Link to="/">Retour à l'accueil</Link>
+                        <Link to="/">Retour à l&rsquo;accueil</Link>
                     </p>
                 </div>
             </div>

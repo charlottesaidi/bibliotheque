@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\ApiService;
+use Throwable;
 
 #[Route('api')]
 class BookController extends AbstractController

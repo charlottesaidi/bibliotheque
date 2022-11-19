@@ -1,14 +1,13 @@
-import React, {FC, useEffect} from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import React, {FC} from 'react';
+import { NavLink } from 'react-router-dom';
 import {RoutesProps} from "@config/router/router.config";
 
 interface Props {
     route: RoutesProps,
     linkClasses?: string,
-    openCollapsible?: any
 }
 
-const LinkNav: FC<Props> = ({route, linkClasses, openCollapsible}) => {
+const LinkNav: FC<Props> = ({route, linkClasses}) => {
     const navStyle = (isActive: boolean) => {
         let style = "sm:flex items-center hover:bg-cyan-200/20 p-3 w-full "+linkClasses;
         style += isActive ? " active disabled bg-cyan-400/20" : "";

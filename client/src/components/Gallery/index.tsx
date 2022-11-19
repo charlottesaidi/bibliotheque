@@ -9,7 +9,7 @@ interface Props {
 }
 
 const Gallery: FC<Props> = ({pageTitle, items, category}) => {
-  const reducedList = items.length <= 4 ? true : false;
+  const reducedList = items.length <= 4;
 
   return (
     <div className="px-5 py-5 mx-auto">

@@ -113,7 +113,7 @@ h3 {
     }
 }
 
-@media (max-width: 640px) {*
+@media (max-width: 640px) {
     nav.sm\:hidden {
         background-color: var(--primary-color);
         height: 64px;

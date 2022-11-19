@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 interface Props {
@@ -10,28 +10,44 @@ interface Props {
 }
 
 interface Style {
-    width: string,
-    textColor: string,
-    backgroundColor: string,
-    hover_backgroundColor: string,
+    classes: string,
+    width?: string,
+    textColor?: string,
+    backgroundColor?: string,
+    hover_backgroundColor?: string,
 }
 
 const Button: React.FC<Props> = ({buttonLabel, buttonLink, buttonRole, buttonType, onclick}) => {
+    const styles: Style = {
+        classes: 'transition-all duration-300 inline-flex items-center justify-center px-4 py-2 '
+    };
 
-    const style: Style = {
-        width: buttonType == 'submit' ? 'w-full' : '',
-        textColor: buttonRole == 'primary' ? 'text-white' : 'secondary' ? 'text-stone-50' : 'success' ? 'text-green-50' : 'danger' ? 'text-red-50' : 'text-yellow-50',
-        backgroundColor: buttonRole == 'primary' ? 'primary' : 'secondary' ? 'bg-stone-400' : 'success' ? 'bg-green-600' : 'danger' ? 'bg-red-600' : 'bg-yellow-600',
-        hover_backgroundColor: buttonRole == 'primary' ? 'primary-hover' : 'secondary' ? 'hover:bg-stone-600' : 'success' ? 'hover:bg-green-900' : 'danger' ? 'hover:bg-red-900' : 'hover:bg-yellow-900',
+    buttonType == 'submit' ? styles['classes'] += 'w-full' : '';
+
+    switch(buttonRole) {
+        case 'primary':
+            styles['classes'] += 'text-white primary primary-hover ';
+            break;
+        case 'secondary':
+            styles['classes'] += 'text-stone-50 bg-stone-400 hover:bg-stone-600 ';
+            break;
+        case 'success':
+            styles['classes'] += 'text-green-50 bg-green-600 hover:bg-green-900 ';
+            break;
+        case 'danger':
+            styles['classes'] += 'text-red-50 bg-red-600 hover:bg-red-900 ';
+            break;
+        default:
+            styles['classes'] += 'text-yellow-500 bg-yellow-600 hover:bg-yellow-900 ';
     }
 
     if(buttonLink) {
         return (
-            <Link className={`${style.width} ${style.textColor} ${style.backgroundColor} ${style.hover_backgroundColor} transition-all duration-300 inline-flex items-center justify-center px-4 py-2`} to={buttonLink}>{buttonLabel}</Link>
+            <Link className={styles.classes} to={buttonLink}>{buttonLabel}</Link>
         )
     } else {
         return (
-            <button className={`${style.width} ${style.textColor} ${style.backgroundColor} ${style.hover_backgroundColor} transition-all duration-300 inline-flex items-center justify-center px-4 py-2`} type={buttonType ? 'submit' : 'button'} onClick={onclick}>{buttonLabel}</button>
+            <button className={styles.classes} type={buttonType ? 'submit' : 'button'} onClick={onclick}>{buttonLabel}</button>
         )
     }
 }
