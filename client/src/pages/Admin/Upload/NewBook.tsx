@@ -7,14 +7,15 @@ const NewBook = () => {
     const {
         handleSubmit,
         register,
-        reset
     } = methods;
 
     const submit = (data: any) => {
         console.log(data)
     }
     return (
-        <UploadBookForm register={register} handleSubmit={handleSubmit(submit)}/>
+        <div className={'mt-5 px-5'}>
+            <UploadBookForm register={register} handleSubmit={handleSubmit(submit)}/>
+        </div>
     )
 }
 

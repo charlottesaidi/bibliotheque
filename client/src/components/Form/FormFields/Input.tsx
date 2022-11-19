@@ -22,7 +22,7 @@ const Input: FC<Props> = ({containerClasses, inputType, inputLabel, inputName, i
             }
             <input
                 id={inputName}
-                className="w-full appearance-none outline-none block p-1.5 border-0 border-b-2 border-gray-400 focus:ring-none focus:border-blue-600"
+                className="w-full appearance-none outline-none block p-1.5 border-0 border-b-2 border-gray-400 focus:ring-none focus:border-cyan-700"
                 type={inputType}
                 placeholder={inputPlaceholder}
                 value={inputValue}
