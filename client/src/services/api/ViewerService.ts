@@ -27,3 +27,19 @@ export const get = async (apiPath: string, options: RequestOptions ) => {
     }
     return response;
 };
+
+export const upload = async (apiPath: string, data: any) => {
+    const response: IResponse = {};
+    try {
+        await api.createWithFile(apiPath, data).then(res => {
+            response['data'] = res.data
+            response['success'] = true;
+        }).catch(err => {
+            response['code'] = err && err.code || err;
+            response['error'] = err && err.message|| err;
+        })
+    } catch (err: any) {
+        response['error'] = err.message;
+    }
+    return response;
+}

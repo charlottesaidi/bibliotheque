@@ -5,6 +5,7 @@
   "homepage": "./home",
   "dependencies": {
     "@craco/craco": "^6.4.5",
+    "@hookform/error-message": "^2.0.1",
     "@react-hook/media-query": "^1.1.1",
     "@react-pdf-viewer/core": "3.7.0",
     "@react-pdf-viewer/page-navigation": "^3.7.0",
@@ -21,6 +22,7 @@
     "pdfjs-dist": "2.15.349",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-hook": "^0.0.1",
     "react-hook-form": "^7.39.1",
     "react-paginate": "^8.1.3",

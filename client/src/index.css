@@ -6,6 +6,7 @@
 
 :root {
     --text-color-theme: #cecece;
+    --bg-color-theme: rgb(15 23 42 / var(--tw-bg-opacity));
     --primary-color: #0c7bad;
     --secondary-color: #1E293B;
     --accent-color-text: #0c7bad;

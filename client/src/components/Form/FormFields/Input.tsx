@@ -1,5 +1,8 @@
 import React, {FC} from "react";
 import {UseFormReturn} from "react-hook-form/dist/types/form";
+import {FieldErrors} from "react-hook-form";
+import { ErrorMessage } from '@hookform/error-message';
+import ErrorAlert from "@components/ErrorAlert";
 
 interface Props {
     containerClasses?: string,
@@ -9,13 +12,14 @@ interface Props {
     inputPlaceholder?: string,
     inputValue?: string,
     register: UseFormReturn["register"],
+    errors?: FieldErrors
 }
 
-const Input: FC<Props> = ({containerClasses, inputType, inputLabel, inputName, inputPlaceholder, inputValue, register}) => {
+const Input: FC<Props> = ({containerClasses, inputType, inputLabel, inputName, inputPlaceholder, inputValue, register, errors}) => {
     return (
         <div className={containerClasses}>
             {inputLabel ?
-                <label className="font-medium text-sm mb-1.5">
+                <label className="inline-block font-medium text-sm mb-1.5">
                     {inputLabel}
                 </label>
                 : null
@@ -26,7 +30,13 @@ const Input: FC<Props> = ({containerClasses, inputType, inputLabel, inputName, i
                 type={inputType}
                 placeholder={inputPlaceholder}
                 value={inputValue}
-                {...register(inputName)}
+                {...register(inputName, {required: 'Champ obligatoire'})}
+            />
+
+            <ErrorMessage
+                errors={errors}
+                name={inputName}
+                render={({message}) => <ErrorAlert message={message}/>}
             />
         </div>
     )

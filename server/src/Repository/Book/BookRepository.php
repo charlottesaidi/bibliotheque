@@ -3,6 +3,8 @@
 namespace App\Repository\Book;
 
 use App\Entity\Book\Book;
+use App\Entity\Book\File;
+use App\Entity\Genre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +39,22 @@ class BookRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function createBook(string $author, string $title, File $file, string $cover, Genre $genre, string $publicationDate): Book
+    {
+        $book = new Book();
+
+        $book->setTitle($title)
+            ->setAuthor($author)
+            ->setFile($file)
+            ->setCover($cover)
+            ->setPublicationDate(new \DateTime($publicationDate))
+            ->addGenre($genre);
+
+        $this->save($book, true);
+
+        return $book;
     }
 
     /**

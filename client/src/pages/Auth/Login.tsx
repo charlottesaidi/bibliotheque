@@ -1,12 +1,11 @@
 import Button from "@components/Button";
-import ErrorAlert from "@components/ErrorAlert";
 import AuthLayout from "@components/Layout/Auth";
 import React from "react";
 // import { Link } from "react-router-dom";
 import { loginUser } from "@services/api/auth/AuthenticationService";
 import Loader from "@components/Loader";
 import Input from "@components/Form/FormFields/Input";
-import {FieldValues, useForm} from "react-hook-form";
+import {FieldErrors, FieldValues, useForm} from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 
 interface Props {
@@ -21,6 +20,7 @@ const Login: React.FC<Props> = ({setToken}) => {
     const {
         handleSubmit,
         register,
+        formState: { errors },
     } = methods;
 
     const login = async (formData: FieldValues) => {
@@ -59,6 +59,7 @@ const Login: React.FC<Props> = ({setToken}) => {
                         inputName={"username"}
                         inputPlaceholder={"Adresse email"}
                         register={register}
+                        errors={errors}
                     />
 
                     <Input
@@ -67,6 +68,7 @@ const Login: React.FC<Props> = ({setToken}) => {
                         inputName={"password"}
                         inputPlaceholder={"Mot de passe"}
                         register={register}
+                        errors={errors}
                     />
                     
                     <Button buttonRole={"primary"} buttonType={"submit"} buttonLabel={"Connexion"}></Button>

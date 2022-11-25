@@ -43,6 +43,13 @@ h3 {
 .card {
     background: var(--secondary-color);
 }
+.uppy-DragDrop-container {
+    color: var(--text-color-theme);
+    background-color: var(--secondary-color);
+}
+.uppy-c-icon {
+    fill: var(--bg-color-theme)
+}
 
 @media (min-width: 640px) {
     .sm\:w-250 {

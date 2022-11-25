@@ -2,21 +2,22 @@ import React, { useEffect } from 'react';
 import Loader from '@components/Loader';
 import ErrorAlert from '@components/ErrorAlert';
 import { isAdmin } from '@services/api/auth/AuthenticationService';
-import {Link, useNavigate} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import folderIcon from '@assets/images/svgs/folder.svg';
+import Forbidden from "@pages/Error/ForbiddenPage";
 
 const Dashboard: React.FC = () => {
     const admin = isAdmin(sessionStorage.getItem('token'));
-    const navigate = useNavigate();
+
+    if(!admin) {
+        return <Forbidden/>
+    }
 
     const [folders, setFolders] = React.useState<Array<any>>();
     const [error] = React.useState<any>();
     const [loading, setLoading] = React.useState(true);
 
     useEffect(() => {
-        if(!admin) {
-            navigate('/forbidden');
-        }
         fetchBooks();
     }, []);
 

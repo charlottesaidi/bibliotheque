@@ -14,7 +14,7 @@ const Select: FC<Props> = ({containerClasses,inputLabel, inputName, options, reg
         <>
             <div className={containerClasses}>
                 {inputLabel ?
-                    <label className="font-medium text-sm mb-1.5">
+                    <label className="inline-block font-medium text-sm mb-1.5">
                         {inputLabel}
                     </label>
                     : null
@@ -22,7 +22,7 @@ const Select: FC<Props> = ({containerClasses,inputLabel, inputName, options, reg
 
                 <select
                     id={inputName}
-                    className="appearance-none outline-none mt-0 block p-1.5 border-0 border-b-2 border-gray-400 focus:ring-0 focus:border-cyan-700"
+                    className="appearance-none outline-none mt-0 block p-1.5 border-0 border-b-2 border-gray-400 focus:ring-0 focus:border-cyan-700 w-full"
                     {...register ? register(inputName) : null}
                 >
                     {

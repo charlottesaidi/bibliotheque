@@ -1,59 +1,100 @@
-import React, {FC} from "react";
+import React from "react";
 import {UseFormReturn} from "react-hook-form/dist/types/form";
+import {useDropzone} from 'react-dropzone';
+import styled from 'styled-components';
+import {FieldErrors} from "react-hook-form";
+import ErrorAlert from "@components/ErrorAlert";
+import {ErrorMessage} from "@hookform/error-message";
 
 interface Props {
     containerClasses?: string,
     inputLabel?: string,
     inputName: string,
-    register?: UseFormReturn["register"],
+    register: UseFormReturn["register"],
+    errors: FieldErrors,
+    setValue: any,
 }
 
-const FileInput = ({containerClasses,inputLabel, inputName, register}: Props) => {
-    const [fileName, setFileName] = React.useState<string>();
+const InputFile = ({containerClasses, inputLabel, inputName, register, errors, setValue}: Props) => {
+    const {
+        getRootProps,
+        getInputProps,
+        acceptedFiles,
+        isFocused,
+        isDragAccept,
+        isDragReject
+    } = useDropzone({
+            onDrop: files => {
+                setValue(inputName, files[0]);
+            }
+        });
 
-    const handleOnChange = (e: any) => {
-        const filePath = e.target.value;
-        const filePathSplited = filePath.split('\\')
-        setFileName(filePathSplited[filePathSplited.length - 1])
-    }
+    React.useEffect(() => {
+        register(inputName, {required: 'Fichier obligatoire'});
+    }, []);
+
     return (
         <div className={containerClasses}>
-            {inputLabel ?
-                <label className="font-medium text-sm mb-1.5">
-                    {inputLabel}
-                </label>
-                : null
+            {
+                inputLabel ?
+                    <label className="inline-block font-medium text-sm mb-2">
+                        {inputLabel}
+                    </label>
+                    : null
             }
+            <div className="container">
+                <Container className={'bg-slate-800'} {...getRootProps({isFocused, isDragAccept, isDragReject})}>
+                    <input type={'file'} name={inputName} {...getInputProps()} />
+                    <p className={'font-bold'}>
+                        <i className={'icon-cloud-upload text-lg pr-3'}></i>
+                        Sélectionner ou faire glisser
+                    </p>
+                    {
+                        acceptedFiles.map(file => (
+                            <p className={'mt-3'} key={file.name}>
+                                {file.name}
+                            </p>
+                        ))
+                    }
+                </Container>
 
-            <div className={'flex items-center gap-3'}>
-
-                <div className="input overflow-hidden relative w-64">
-                    <button
-                        className="border-b-2 border-gray-400 focus:ring-0 focus:border-cyan-700 font-bold py-2 px-4 w-full inline-flex items-center">
-                        <svg fill="#FFF" height="18" viewBox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M0 0h24v24H0z" fill="none"/>
-                            <path d="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z"/>
-                        </svg>
-                        <span className="ml-2">Choisir un fichier</span>
-                    </button>
-
-                    <input
-                        className="cursor-pointer absolute block opacity-0 top-0 bottom-0"
-                        type="file"
-                        id={inputName}
-                        {...register ? register(inputName) : null}
-                        onChange={() => handleOnChange(event)}
-                    />
-                </div>
-
-                {
-                    fileName ?
-                        <span>{fileName}</span>
-                        : null
-                }
+                <ErrorMessage
+                    errors={errors}
+                    name={inputName}
+                    render={({message}) => <ErrorAlert message={message}/>}
+                />
             </div>
         </div>
     )
 }
+const getColor = (props: any) => {
+    if (props.isDragAccept) {
+        return '#00e676';
+    }
+    if (props.isDragReject) {
+        return '#ff1744';
+    }
+    if (props.isFocused) {
+        return '#2196f3';
+    }
+    return '#bdbdbd';
+}
 
-export default FileInput;
+const Container = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-width: 2px;
+  border-radius: 2px;
+  border-color: ${props => getColor(props)};
+  border-style: dashed;
+  color: #bdbdbd;
+  outline: none;
+  transition: border .24s ease-in-out;
+  cursor: pointer
+`;
+
+export default InputFile;

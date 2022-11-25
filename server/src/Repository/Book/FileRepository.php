@@ -39,6 +39,21 @@ class FileRepository extends ServiceEntityRepository
         }
     }
 
+    public function createFile(string $type, string $name, string $extension, float $size): File
+    {
+        $file = new File();
+
+        $file->setType($type)
+            ->setName($name)
+            ->setExtension($extension)
+            ->setSize($size)
+            ->setUploadedAt(new \DateTime());
+
+        $this->save($file, true);
+
+        return $file;
+    }
+
 //    /**
 //     * @return File[] Returns an array of File objects
 //     */

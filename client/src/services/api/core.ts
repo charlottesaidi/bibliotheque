@@ -25,7 +25,7 @@ axios.interceptors.response.use((response) => {
         code: 0
     };
     if (error && error.response && error.response.status === 403) {
-        window.location.href = '/forbidden';
+        console.log(error)
     } else {
         switch (error.response.status) {
             case 400:
@@ -51,29 +51,14 @@ axios.interceptors.response.use((response) => {
     }
 });
 
-const AUTH_SESSION_KEY = 'token';
-
 /**
  * Sets the default authorization
  * @param {*} token
  */
 const setAuthorization = (token: string | null) => {
-    if (token) axios.defaults.headers.common['Authorization'] = 'JWT ' + token;
+    if (token) axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
     else delete axios.defaults.headers.common['Authorization'];
 };
-
-const getUserFromCookie = () => {
-    const user = sessionStorage.getItem(AUTH_SESSION_KEY);
-    return user ? user : null;
-};
-
-/*
-Check if token available in session
-*/
-const user = getUserFromCookie();
-if (user) {
-    setAuthorization(user);
-}
 
 class Core {
     /**
@@ -90,21 +75,6 @@ class Core {
             response = axios.get(`${url}?${queryString}`, params);
         } else {
             response = axios.get(`${url}`, params);
-        }
-        return response;
-    };
-
-    getFile = (url: string, params: any) => {
-        let response;
-        if (params) {
-            const queryString = params
-                ? Object.keys(params)
-                    .map((key) => key + '=' + params[key])
-                    .join('&')
-                : '';
-            response = axios.get(`${url}?${queryString}`, { responseType: 'blob' });
-        } else {
-            response = axios.get(`${url}`, { responseType: 'blob' });
         }
         return response;
     };
@@ -152,8 +122,14 @@ class Core {
      */
     createWithFile = (url: string, data: any) => {
         const formData = new FormData();
+        const fileData = data['file'] ?? '';
+
+        const file = {'name': fileData.name, 'type': fileData.type, 'size': fileData.size}
+
         for (const k in data) {
-            formData.append(k, data[k]);
+            if(k == 'file') formData.append('file', JSON.stringify(file));
+            if(k == 'cover') formData.append('cover', JSON.stringify(data[k]));
+            if(k !== 'file' && k !== 'cover') formData.append(k, data[k]);
         }
 
         const config = {
@@ -161,24 +137,8 @@ class Core {
                 'content-type': 'multipart/form-data',
             },
         };
+
         return axios.post(url, formData, config);
-    };
-
-    /**
-     * post given data to url with file
-     */
-    updateWithFile = (url: string, data: any) => {
-        const formData = new FormData();
-        for (const k in data) {
-            formData.append(k, data[k]);
-        }
-
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data',
-            },
-        };
-        return axios.patch(url, formData, config);
     };
 }
 
