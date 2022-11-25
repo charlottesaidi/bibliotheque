@@ -33,11 +33,15 @@ const Input: FC<Props> = ({containerClasses, inputType, inputLabel, inputName, i
                 {...register(inputName, {required: 'Champ obligatoire'})}
             />
 
-            <ErrorMessage
-                errors={errors}
-                name={inputName}
-                render={({message}) => <ErrorAlert message={message}/>}
-            />
+            {
+                errors ?
+                    <ErrorMessage
+                        errors={errors}
+                        name={inputName}
+                        render={({message}) => <ErrorAlert message={message}/>}
+                    />
+                : null
+            }
         </div>
     )
 }

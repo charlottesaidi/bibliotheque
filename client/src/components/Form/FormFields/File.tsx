@@ -58,11 +58,15 @@ const InputFile = ({containerClasses, inputLabel, inputName, register, errors, s
                     }
                 </Container>
 
-                <ErrorMessage
-                    errors={errors}
-                    name={inputName}
-                    render={({message}) => <ErrorAlert message={message}/>}
-                />
+                {
+                    errors ?
+                        <ErrorMessage
+                            errors={errors}
+                            name={inputName}
+                            render={({message}) => <ErrorAlert message={message}/>}
+                        />
+                        : null
+                }
             </div>
         </div>
     )
