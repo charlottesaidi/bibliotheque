@@ -46,7 +46,7 @@ class MovieRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('m')
             ->select('m, f')
             ->innerJoin('m.file', 'f')
-            ->orderBy('m.createdAt', 'DESC')
+            ->orderBy('m.id', 'DESC')
             ->getQuery()->getArrayResult();
     }
 
@@ -57,7 +57,7 @@ class MovieRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('m')
             ->select('m, f')
             ->innerJoin('m.file', 'f')
-            ->orderBy('m.updatedAt', 'DESC')
+            ->orderBy('m.id', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()->getArrayResult();
     }

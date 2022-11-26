@@ -64,7 +64,7 @@ class BookRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('b') 
             ->select('b, f')
             ->innerJoin('b.file', 'f')
-            ->orderBy('b.createdAt', 'DESC')
+            ->orderBy('b.id', 'DESC')
             ->getQuery()->getArrayResult();
     }
 
@@ -75,7 +75,7 @@ class BookRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('b') 
             ->select('b, f')
             ->innerJoin('b.file', 'f')
-            ->orderBy('b.updatedAt', 'DESC')
+            ->orderBy('b.id', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()->getArrayResult();
     }

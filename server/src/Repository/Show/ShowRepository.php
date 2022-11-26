@@ -46,7 +46,7 @@ class ShowRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('s')
             ->select('s, f')
             ->innerJoin('s.files', 'f')
-            ->orderBy('s.createdAt', 'DESC')
+            ->orderBy('s.id', 'DESC')
             ->getQuery()->getArrayResult();
     }
 
@@ -57,7 +57,7 @@ class ShowRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('s')
             ->select('s, f')
             ->innerJoin('s.files', 'f')
-            ->orderBy('s.updatedAt', 'DESC')
+            ->orderBy('s.id', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()->getArrayResult();
     }
