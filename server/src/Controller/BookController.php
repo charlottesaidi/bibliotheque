@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Controller\Book;
+namespace App\Controller;
 
 use App\Entity\Book\Book;
-use App\Entity\Book\File;
+use App\Entity\File;
 use App\Entity\Genre;
+use App\Service\ApiService;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
-use App\Service\ApiService;
-use Throwable;
+use Symfony\Component\Routing\Annotation\Route;
 
 #[Route('api')]
 class BookController extends AbstractController
@@ -27,7 +26,7 @@ class BookController extends AbstractController
             $requestParam = $request->query;
 
             $books = $requestParam ? $repository->getSearchedBooks($requestParam->get('title'), $requestParam->get('author')) : $repository->getAll();
-    
+
             if(null == $books) {
                 throw $this->createNotFoundException();
             }
@@ -90,7 +89,7 @@ class BookController extends AbstractController
             $book = $repository->findOneBySlug($slug);
     
             if(null == $book) {
-                throw $this->createNotFoundException();
+                throw $this->createNotFoundException('Ressource introuvable');
             }
     
             $response->setContent($this->api->handleCircularReference($book)) ;
@@ -102,11 +101,26 @@ class BookController extends AbstractController
         } 
     }
 
-    #[Route('/book/{slug}/delete', name: 'api_delete_book')]
-    public function delete($slug): JsonResponse
+    #[Route('/book/{id}/delete', name: 'api_delete_book')]
+    public function delete($id): JsonResponse
     {
         $response = new JsonResponse();
-        $response->setContent('michel');
-        return $response;
+
+        try {
+            $repository = $this->doctrine->getRepository(File::class);
+            $file = $repository->find($id);
+
+            if(null == $file) {
+                throw $this->createNotFoundException('Ressource introuvable');
+            }
+
+            $repository->remove($file, true);
+
+            $response->setContent('Livre supprimé');
+            return $response;
+        }  catch(throwable $e) {
+            $response->setContent($e->getMessage());
+            return $response;
+        }
     }
 }

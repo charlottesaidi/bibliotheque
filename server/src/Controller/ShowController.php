@@ -1,33 +1,33 @@
 <?php
 
-namespace App\Controller\Movie;
+namespace App\Controller;
 
-use App\Entity\Movie\Movie;
+use App\Entity\Show\Show;
 use App\Service\ApiService;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Throwable;
 
 #[Route('api')]
-class MovieController extends AbstractController
+class ShowController extends AbstractController
 {
-    public function __construct(private ManagerRegistry $doctrine, private ApiService $api) {}
+    public function __construct(private ManagerRegistry $doctrine) {}
 
-    #[Route('/movies', name: 'api_movies')]
+    #[Route('/shows', name: 'api_shows')]
     public function index(): JsonResponse
     {
         try {
-            $repository = $this->doctrine->getRepository(Movie::class);
+            $repository = $this->doctrine->getRepository(Show::class);
 
-            $movies = $repository->getAll();
+            $shows = $repository->getAll();
 
-            if(null == $movies) {
+            if(null == $shows) {
                 throw $this->createNotFoundException();
             }
 
-            return $this->json($movies);
+            return $this->json($shows);
         } catch(throwable $e) {
             return $this->json($e->getMessage());
         }

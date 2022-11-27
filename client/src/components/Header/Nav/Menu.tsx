@@ -3,15 +3,19 @@ import CollapsibleItem from "@components/Collapsible/CollapsibleItem";
 import LinkNav from "@components/Header/Link";
 import React from "react";
 import {useLocation} from "react-router-dom";
+import {isAdmin} from "@services/api/auth/AuthenticationService";
 
 const Menu = (routes: RoutesProps[], dataCollapseParent: string) => {
+    const admin = isAdmin(sessionStorage.getItem('token'));
+
     const location = useLocation()
 
     const matchPath = (path: string) => {
-        if(path == location.pathname.split('/')[1]) {
-            return true
-        }
-        return false;
+        return path == location.pathname.split('/')[1];
+    }
+
+    const routeAdminAccessible = (route: RoutesProps) => {
+        return !(route.path == '/admin' && !admin);
     }
 
     return routes.filter((route) => route.name !== undefined)
@@ -20,6 +24,7 @@ const Menu = (routes: RoutesProps[], dataCollapseParent: string) => {
             return route.children ?
                 (
                     <CollapsibleItem
+                        accordionClasses={routeAdminAccessible(route) ? 'block' : 'hidden'}
                         headingClasses={"py-2"}
                         key={index+'-'+route.name}
                         isOpen={matchPath(route.path || '')}

@@ -24,31 +24,28 @@ axios.interceptors.response.use((response) => {
         message: '',
         code: 0
     };
-    if (error && error.response && error.response.status === 403) {
-        console.log(error)
-    } else {
-        switch (error.response.status) {
-            case 400:
-                errorResponse.code = 400;
-                errorResponse.message = 'Une erreur est survenue';
-                break;
-            case 401:
-                errorResponse.code = 401;
-                errorResponse.message = 'Identifiants ou mot de passe invalide';
-                break;
-            case 403:
-                errorResponse.code = 403;
-                errorResponse.message = 'Accès refusé';
-                break;
-            case 404:
-                errorResponse.code = 404;
-                errorResponse.message = 'La bibliothèque est vide';
-                break;
-            default:
-                errorResponse.message = error.response && error.response.data ? error.response.data['message'] : error.message || error;
-        }
-        return Promise.reject(errorResponse);
+    switch (error.response?.status) {
+        case 400:
+            errorResponse.code = 400;
+            errorResponse.message = 'Une erreur est survenue';
+            break;
+        case 401:
+            errorResponse.code = 401;
+            errorResponse.message = 'Identifiants ou mot de passe invalide';
+            break;
+        case 403:
+            errorResponse.code = 403;
+            errorResponse.message = 'Accès refusé';
+            break;
+        case 404:
+            errorResponse.code = 404;
+            errorResponse.message = 'La bibliothèque est vide';
+            break;
+        default:
+            errorResponse.code = 500;
+            errorResponse.message = error.response && error.response.data ? error.response.data['message'] || error.response.data['detail']  : error.message || error;
     }
+    return Promise.reject(errorResponse);
 });
 
 /**
@@ -122,13 +119,10 @@ class Core {
      */
     createWithFile = (url: string, data: any) => {
         const formData = new FormData();
-        const fileData = data['file'] ?? '';
-
-        const file = {'name': fileData.name, 'type': fileData.type, 'size': fileData.size}
 
         for (const k in data) {
-            if(k == 'file') formData.append('file', JSON.stringify(file));
-            if(k == 'cover') formData.append('cover', JSON.stringify(data[k]));
+            if(k == 'file') formData.append('file', data[k]);
+            if(k == 'cover') formData.append('cover', data[k]);
             if(k !== 'file' && k !== 'cover') formData.append(k, data[k]);
         }
 

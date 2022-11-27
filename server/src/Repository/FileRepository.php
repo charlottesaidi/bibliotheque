@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository\Movie;
+namespace App\Repository;
 
-use App\Entity\Movie\File;
+use App\Entity\File;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +37,20 @@ class FileRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function createFile(string $type, string $name, string $extension, float $size): File
+    {
+        $file = new File();
+
+        $file->setType($type)
+            ->setName($name)
+            ->setExtension($extension)
+            ->setSize($size);
+
+        $this->save($file, true);
+
+        return $file;
     }
 
 //    /**

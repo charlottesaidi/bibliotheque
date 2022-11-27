@@ -22,9 +22,6 @@ input, .input, textarea, select {
 *.primary {
     background-color: var(--primary-color);
 }
-*.primary-hover:hover {
-    opacity: .5;
-}
 *.primary-link {
     color: var(--accent-color-text)
 }

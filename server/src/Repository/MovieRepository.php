@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Movie;
+namespace App\Repository;
 
 use App\Entity\Movie\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;

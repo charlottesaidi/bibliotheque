@@ -5,7 +5,7 @@ import React from "react";
 import { loginUser } from "@services/api/auth/AuthenticationService";
 import Loader from "@components/Loader";
 import Input from "@components/Form/FormFields/Input";
-import {FieldErrors, FieldValues, useForm} from "react-hook-form";
+import {FieldValues, useForm} from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 
 interface Props {
@@ -13,7 +13,6 @@ interface Props {
 }
 
 const Login: React.FC<Props> = ({setToken}) => {
-    const [error, setError] = React.useState<any>();
     const [loading, setLoading] = React.useState(false);
 
     const methods = useForm({});
@@ -29,14 +28,12 @@ const Login: React.FC<Props> = ({setToken}) => {
         const res = await loginUser(formData);
 
         if(res.error) {
-            setError(res.error)
             toast.error(res.error.message, {
                 position: "top-center",
                 theme: 'dark'
             })
         } else {
             setToken(res.data);
-            setError('');
         }
         
         setLoading(false);
@@ -70,8 +67,10 @@ const Login: React.FC<Props> = ({setToken}) => {
                         register={register}
                         errors={errors}
                     />
-                    
-                    <Button buttonRole={"primary"} buttonType={"submit"} buttonLabel={"Connexion"}></Button>
+
+                    <div className={'mt-5'}>
+                        <Button buttonRole={"primary"} buttonType={"submit"} buttonLabel={"Connexion"}></Button>
+                    </div>
                     
                     <div className="flex flex-col items-center mt-5">
                         {/* <p className="mt-1 text-xs font-light text-gray-500">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Show;
+namespace App\Repository;
 
 use App\Entity\Show\Show;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -44,8 +44,8 @@ class ShowRepository extends ServiceEntityRepository
      */
     public function getAll(): array {
         return $this->createQueryBuilder('s')
-            ->select('s, f')
-            ->innerJoin('s.files', 'f')
+            ->select('s, e')
+            ->innerJoin('s.episode', 'e')
             ->orderBy('s.id', 'DESC')
             ->getQuery()->getArrayResult();
     }
@@ -55,8 +55,8 @@ class ShowRepository extends ServiceEntityRepository
      */
     public function getLastUploadedShows(int $limit): array {
         return $this->createQueryBuilder('s')
-            ->select('s, f')
-            ->innerJoin('s.files', 'f')
+            ->select('s, e')
+            ->innerJoin('s.episodes', 'e')
             ->orderBy('s.id', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()->getArrayResult();

@@ -11,7 +11,7 @@ interface Props {
     inputLabel?: string,
     inputName: string,
     register: UseFormReturn["register"],
-    errors: FieldErrors,
+    errors?: FieldErrors,
     setValue: any,
 }
 
@@ -25,12 +25,12 @@ const InputFile = ({containerClasses, inputLabel, inputName, register, errors, s
         isDragReject
     } = useDropzone({
             onDrop: files => {
-                setValue(inputName, files[0]);
+                setValue(inputName, files);
             }
         });
 
     React.useEffect(() => {
-        register(inputName, {required: 'Fichier obligatoire'});
+        errors ? register(inputName, {required: 'Fichier obligatoire'}) : register(inputName);
     }, []);
 
     return (

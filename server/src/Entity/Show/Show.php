@@ -2,15 +2,15 @@
 
 namespace App\Entity\Show;
 
+use App\Entity\DatedInterface;
+use App\Entity\DatedTrait;
 use App\Entity\Genre;
-use App\Repository\Show\ShowRepository;
+use App\Entity\SlugInterface;
+use App\Entity\SlugTrait;
+use App\Repository\ShowRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\DatedInterface;
-use App\Entity\DatedTrait;
-use App\Entity\SlugInterface;
-use App\Entity\SlugTrait;
 
 #[ORM\Entity(repositoryClass: ShowRepository::class)]
 #[ORM\Table(name: '`show`')]
@@ -30,8 +30,8 @@ class Show implements DatedInterface, SlugInterface
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\OneToMany(mappedBy: 'fileShow', targetEntity: File::class)]
-    private Collection $files;
+    #[ORM\OneToMany(mappedBy: 'show', targetEntity: Episode::class)]
+    private Collection $episodes;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $cover = null;
@@ -44,7 +44,7 @@ class Show implements DatedInterface, SlugInterface
 
     public function __construct()
     {
-        $this->files = new ArrayCollection();
+        $this->episodes = new ArrayCollection();
         $this->genres = new ArrayCollection();
         $this->slug = $this->slugify($this->title);
         $this->createdAt = new \DateTime();
@@ -92,29 +92,29 @@ class Show implements DatedInterface, SlugInterface
     }
 
     /**
-     * @return Collection<int, File>
+     * @return Collection<int, Episode>
      */
     public function getFiles(): Collection
     {
-        return $this->files;
+        return $this->episodes;
     }
 
-    public function addFile(File $file): self
+    public function addFile(Episode $episode): self
     {
-        if (!$this->files->contains($file)) {
-            $this->files->add($file);
-            $file->setFileShow($this);
+        if (!$this->episodes->contains($episode)) {
+            $this->episodes->add($episode);
+            $episode->setShow($this);
         }
 
         return $this;
     }
 
-    public function removeFile(File $file): self
+    public function removeFile(Episode $episode): self
     {
-        if ($this->files->removeElement($file)) {
+        if ($this->episodes->removeElement($episode)) {
             // set the owning side to null (unless already changed)
-            if ($file->getFileShow() === $this) {
-                $file->setFileShow(null);
+            if ($episode->getShow() === $this) {
+                $episode->setShow(null);
             }
         }
 

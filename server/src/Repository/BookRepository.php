@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repository\Book;
+namespace App\Repository;
 
 use App\Entity\Book\Book;
-use App\Entity\Book\File;
+use App\Entity\File;
 use App\Entity\Genre;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -101,7 +101,7 @@ class BookRepository extends ServiceEntityRepository
                 ->setParameters(['title' => '%'.$title.'%', 'author' => '%'.$author.'%']);
         }
 
-        return $query->orderBy('b.createdAt', 'DESC')
+        return $query->orderBy('b.id', 'DESC')
             ->getQuery()->getArrayResult();
     }
 

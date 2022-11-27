@@ -2,13 +2,13 @@
 
 namespace App\DataFixtures;
 
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use App\Entity\Book\Book;
-use App\Entity\Book\File;
+use App\Entity\File;
 use App\Entity\Genre;
 use App\Entity\User;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface; 
+use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -41,8 +41,10 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $userAdmin = self::saveAdmin('charlotte.saidi@outlook.fr', '!', $this->passwordHasher);
+        $userAdmin = self::saveUser('charlotte.saidi@outlook.fr', '!', $this->passwordHasher, ["ROLE_ADMIN"]);
         $manager->persist($userAdmin);
+        $userUser = self::saveUser('julien.saidi@orange.fr', '!', $this->passwordHasher, ["ROLE_USER"]);
+        $manager->persist($userUser);
 
         $sciFy = self::saveGenre('sci-fy', 'Science-Fiction');
         $manager->persist($sciFy);
@@ -85,9 +87,8 @@ class AppFixtures extends Fixture
         $file->setType($type)
             ->setName($name)
             ->setExtension($extension)
-            ->setSize($size)
-            ->setUploadedAt(new \DateTime());
-        
+            ->setSize($size);
+
         return $file;
     }
 
@@ -100,7 +101,7 @@ class AppFixtures extends Fixture
         return $genre;
     }
 
-    private static function saveAdmin(string $username, string $password, UserPasswordHasherInterface $passwordHasher): User 
+    private static function saveUser(string $username, string $password, UserPasswordHasherInterface $passwordHasher, array $roles): User
     {
         $user = new User();
         
@@ -109,7 +110,7 @@ class AppFixtures extends Fixture
                 $user,
                 $password
             ))
-            ->setRoles(["ROLE_ADMIN"]);
+            ->setRoles($roles);
 
         return $user;
     }

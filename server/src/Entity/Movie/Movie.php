@@ -2,15 +2,16 @@
 
 namespace App\Entity\Movie;
 
+use App\Entity\DatedInterface;
+use App\Entity\DatedTrait;
+use App\Entity\File;
 use App\Entity\Genre;
-use App\Repository\Movie\MovieRepository;
+use App\Entity\SlugInterface;
+use App\Entity\SlugTrait;
+use App\Repository\MovieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\DatedInterface;
-use App\Entity\DatedTrait;
-use App\Entity\SlugInterface;
-use App\Entity\SlugTrait;
 
 #[ORM\Entity(repositoryClass: MovieRepository::class)]
 class Movie implements DatedInterface, SlugInterface

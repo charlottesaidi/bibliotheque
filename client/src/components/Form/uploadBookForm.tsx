@@ -36,7 +36,7 @@ const UploadBookForm = ({...props}: FormProps) => {
                 </div>
                 <div className={'w-full md:w-1/2 px-10'}>
                     <InputFile containerClasses={'input-group w-full mb-6'} inputName={'file'} inputLabel={'Fichier livre'} register={props.register} setValue={props.setValue} errors={props.errors} />
-                    <InputFile containerClasses={'input-group w-full mb-6'} inputName={'cover'} inputLabel={'Couverture'} register={props.register} setValue={props.setValue} errors={props.errors} />
+                    <InputFile containerClasses={'input-group w-full mb-6'} inputName={'cover'} inputLabel={'Couverture'} register={props.register} setValue={props.setValue} />
                 </div>
             </div>
 

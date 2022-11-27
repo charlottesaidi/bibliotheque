@@ -43,3 +43,19 @@ export const upload = async (apiPath: string, data: any) => {
     }
     return response;
 }
+
+export const deleteResource = async (apiPath: string) => {
+    const response: IResponse = {};
+    try {
+        await api.delete(apiPath).then(res => {
+            response['data'] = res.data
+            response['success'] = true;
+        }).catch(err => {
+            response['code'] = err && err.code || err;
+            response['error'] = err && err.code === 404 ? 'Ressource introuvable' : err && err.message|| err;
+        })
+    } catch (err: any) {
+        response['error'] = err.message;
+    }
+    return response;
+}

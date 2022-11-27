@@ -1,25 +1,23 @@
 <?php
 
-namespace App\Entity\Movie;
+namespace App\Entity;
 
-use App\Entity\UploadedAtInterface;
-use App\Entity\UploadedAtTrait;
-use App\Repository\Movie\FileRepository;
+use App\Entity\Book\Book;
+use App\Repository\FileRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\DatedInterface;
-use App\Entity\DatedTrait;
 
-#[ORM\Table(name: "movie_file")]
 #[ORM\Entity(repositoryClass: FileRepository::class)]
-class File implements DatedInterface, UploadedAtInterface
+class File implements DatedInterface
 {
     use DatedTrait;
-    use UploadedAtTrait;
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $type = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -31,17 +29,28 @@ class File implements DatedInterface, UploadedAtInterface
     private ?float $size = null;
 
     #[ORM\OneToOne(mappedBy: 'file', cascade: ['persist', 'remove'])]
-    private ?Movie $movie = null;
+    private ?Book $book = null;
 
     public function __construct()
     {
-        $this->uploadedAt = new \DateTime();
         $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -80,24 +89,24 @@ class File implements DatedInterface, UploadedAtInterface
         return $this;
     }
 
-    public function getMovie(): ?Movie
+    public function getBook(): ?Book
     {
-        return $this->movie;
+        return $this->book;
     }
 
-    public function setMovie(?Movie $movie): self
+    public function setBook(?Book $book): self
     {
         // unset the owning side of the relation if necessary
-        if ($movie === null && $this->movie !== null) {
-            $this->movie->setFile(null);
+        if ($book === null && $this->book !== null) {
+            $this->book->setFile(null);
         }
 
         // set the owning side of the relation if necessary
-        if ($movie !== null && $movie->getFile() !== $this) {
-            $movie->setFile($this);
+        if ($book !== null && $book->getFile() !== $this) {
+            $book->setFile($this);
         }
 
-        $this->movie = $movie;
+        $this->book = $book;
 
         return $this;
     }

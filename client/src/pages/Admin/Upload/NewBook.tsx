@@ -4,8 +4,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import UploadBookForm from "@components/Form/uploadBookForm";
 import {upload} from "@services/api/ViewerService";
 import Loader from "@components/Loader";
+import {isAdmin} from "@services/api/auth/AuthenticationService";
+import Forbidden from "@pages/Error/ForbiddenPage";
 
 const NewBook = () => {
+    const admin = isAdmin(sessionStorage.getItem('token'));
+
+    if(!admin) {
+        return <Forbidden/>
+    }
+
     const [loading, setLoading] = React.useState<boolean>(false);
 
     const methods = useForm({});
@@ -20,14 +28,14 @@ const NewBook = () => {
     const submit = async (data: any) => {
         setLoading(true)
         const uploadResponse = await upload('/book/create', data);
-        console.log(uploadResponse)
+
         if(uploadResponse.error) {
-            toast.error(uploadResponse.error.message, {
+            toast.error(uploadResponse.error, {
                 position: "top-center",
                 theme: 'dark'
             })
         } else {
-            toast.success(uploadResponse.data.message, {
+            toast.success(uploadResponse.data, {
                 position: "top-center",
                 theme: 'dark'
             })

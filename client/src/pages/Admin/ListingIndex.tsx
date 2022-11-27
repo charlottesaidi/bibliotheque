@@ -3,14 +3,23 @@ import Loader from "@components/Loader";
 import List from "@components/List";
 import ErrorAlert from "@components/ErrorAlert";
 import {get} from "@services/api/ViewerService";
+import Forbidden from "@pages/Error/ForbiddenPage";
+import {isAdmin} from "@services/api/auth/AuthenticationService";
 
 interface ApiListingProps {
-    path: string,
+    apiGetPath: string,
     key?: string,
     appUploadPath?: string
+    apiDeletePath?: string
 }
 
 const ListingIndex = ({...props}: ApiListingProps) => {
+    const admin = isAdmin(sessionStorage.getItem('token'));
+
+    if(!admin) {
+        return <Forbidden/>
+    }
+
     const [files, setFiles] = React.useState<Array<any>>();
     const [error, setError] = React.useState<any>();
     const [loading, setLoading] = React.useState(true);
@@ -20,7 +29,7 @@ const ListingIndex = ({...props}: ApiListingProps) => {
     }, [])
 
     const fetchFiles = async () => {
-        const res = await get(props.path, {storageKey: props.key});
+        const res = await get(props.apiGetPath, {storageKey: props.key});
         if(res.error) {
             res.code == '404' ? setError('') : setError(res.error);
         } else {
@@ -36,7 +45,7 @@ const ListingIndex = ({...props}: ApiListingProps) => {
     }
     
     return loading ? <Loader/> :
-        !error ? <List items={files} uploadUrl={props.appUploadPath}/> :
+        !error ? <List items={files} uploadUrl={props.appUploadPath} deletePath={props.apiDeletePath}/> :
             <ErrorAlert message={error}/>
 }
 

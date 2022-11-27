@@ -2,15 +2,16 @@
 
 namespace App\Entity\Book;
 
+use App\Entity\DatedInterface;
+use App\Entity\DatedTrait;
+use App\Entity\File;
 use App\Entity\Genre;
-use App\Repository\Book\BookRepository;
+use App\Entity\SlugInterface;
+use App\Entity\SlugTrait;
+use App\Repository\BookRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\DatedInterface;
-use App\Entity\DatedTrait;
-use App\Entity\SlugInterface;
-use App\Entity\SlugTrait;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
 class Book implements DatedInterface, SlugInterface

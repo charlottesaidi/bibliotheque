@@ -33,10 +33,10 @@ export const routes: RoutesProps[] = [
         icon: 'folder',
         children: [
             {path: '/admin', name: 'Dashboard', element: <Dashboard/>},
-            {path: '/admin/books', name: 'eBooks', element: <ListingIndex path={'/books'} key={'books'} appUploadPath={'/admin/books/new'}/>},
+            {path: '/admin/books', name: 'eBooks', element: <ListingIndex apiGetPath={'/books'} key={'books'} appUploadPath={'/admin/books/new'} apiDeletePath={'/book'}/>},
             {path: '/admin/books/new', element: <NewBook/>},
-            {path: '/admin/movies', name: 'Films', element:  <ListingIndex path={'/movies'} key={'movies'}/>},
-            {path: '/admin/shows', name: 'Séries', element:  <ListingIndex path={'/shows'} key={'shows'}/>},
+            {path: '/admin/movies', name: 'Films', element:  <ListingIndex apiGetPath={'/movies'} key={'movies'}/>},
+            {path: '/admin/shows', name: 'Séries', element:  <ListingIndex apiGetPath={'/shows'} key={'shows'}/>},
         ],
         errorElement: <NotFound/>
     }
