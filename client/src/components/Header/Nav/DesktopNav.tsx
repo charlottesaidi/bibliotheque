@@ -6,6 +6,7 @@ import React from "react";
 import Menu from "@components/Header/Nav/Menu";
 
 const DesktopNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: any) => {
+
     return (
         <nav id="header" className={`hidden sm:flex flex-col justify-between shadow-lg fixed z-10 left-0 h-full transition-all duration-300 sm:w-250 p-8`}>
             <ul className="w-full flex sm:flex-col items-start justify-around">

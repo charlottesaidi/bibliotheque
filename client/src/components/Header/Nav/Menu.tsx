@@ -25,7 +25,7 @@ const Menu = (routes: RoutesProps[], dataCollapseParent: string) => {
                 (
                     <CollapsibleItem
                         accordionClasses={routeAdminAccessible(route) ? 'block' : 'hidden'}
-                        headingClasses={"py-2"}
+                        headingClasses={"py-3"}
                         key={index+'-'+route.name}
                         isOpen={matchPath(route.path || '')}
                         headingId={'heading_'+route.name}
@@ -37,18 +37,18 @@ const Menu = (routes: RoutesProps[], dataCollapseParent: string) => {
                                     route.icon ?
                                         <i className={'icon-'+route.icon+' sm:mr-3'}/> : ''
                                 }
-                                <span className="nav-link-label">{route.name}</span>
+                                <span className="nav-link-label" style={{lineHeight: '1'}}>{route.name}</span>
                             </>
                         }
                     >
-                        <>
+                        <ul className={'pl-4 pb-4'}>
                             {
                                 route.children.filter((child) => child.name !== undefined)
                                     .map((child, i) => (
-                                        <LinkNav route={child} key={i+'-'+child.name} linkClasses={'text-sm'}/>
+                                        <LinkNav route={child} key={i+'-'+child.name} linkClasses={'text-sm border-l-2'}/>
                                     ))
                             }
-                        </>
+                        </ul>
                     </CollapsibleItem>
                 ) : (
                     <LinkNav route={route} key={route.path}/>

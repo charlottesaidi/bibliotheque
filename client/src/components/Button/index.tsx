@@ -26,7 +26,7 @@ const Button: React.FC<Props> = ({buttonLabel, buttonLink, buttonRole, buttonTyp
 
     switch(buttonRole) {
         case 'primary':
-            styles['classes'] += 'text-white bg-sky-400/[.5] hover:bg-sky-600/[.5] ';
+            styles['classes'] += 'text-white bg-violet-400/[.2] hover:bg-violet-400/[.5] ';
             break;
         case 'secondary':
             styles['classes'] += 'text-stone-50 bg-stone-400/[.5] hover:bg-stone-600/[.5] ';

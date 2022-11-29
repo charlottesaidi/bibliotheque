@@ -1,7 +1,11 @@
 @import 'index.css';
 
 body {
-    color: var(--text-color-theme)
+    color: var(--text-color-theme);
+}
+.App {
+    background: rgba(32,19,54,1);
+    background: linear-gradient(180deg, rgba(32,19,54,1) 0%, rgba(27,31,36,1) 100%);
 }
 
 body::-webkit-scrollbar {
@@ -19,17 +23,17 @@ body::-webkit-scrollbar-track {
 input, .input, textarea, select {
     background: var(--secondary-color)
 }
-*.primary {
-    background-color: var(--primary-color);
+*.primary, *.primary-hover:hover {
+    background-color: var(--primary-color-transparent);
 }
 *.primary-link {
     color: var(--accent-color-text)
 }
 *.text-active, *.hover-text-active:hover {
-    color: var(--text-active-color)
+    color: var(--accent-color-text)
 }
 *.hover-svg-active:hover, *.hover-svg-active:hover>path {
-    stroke: var(--text-active-color)
+    stroke: var(--accent-color-text)
 }
 h3 {
     opacity: .7
@@ -94,7 +98,7 @@ h3 {
         background: inherit
     }
     body[data-leftbar-size=condensed] nav .accordion-item:hover i.sm\:mr-3 {
-        margin: 0 2.26rem 0 0.75rem;
+        margin: 0 2.26rem 0 0.89rem;
     }
     body[data-leftbar-size=condensed] .sm\:w-250 i.sm\:mr-3 {
         padding: 0;

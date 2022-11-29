@@ -9,6 +9,7 @@ import NewBook from "@pages/Admin/Upload/NewBook";
 import ListingIndex from "@pages/Admin/ListingIndex";
 import GalleryIndex from "@pages/Viewers/GalleryIndex";
 import Viewer from "@pages/Viewers/Viewer";
+import {Profile} from "@pages/Settings/Profile";
 
 export const routes: RoutesProps[] = [
     {
@@ -37,6 +38,16 @@ export const routes: RoutesProps[] = [
             {path: '/admin/books/new', element: <NewBook/>},
             {path: '/admin/movies', name: 'Films', element:  <ListingIndex apiGetPath={'/movies'} key={'movies'}/>},
             {path: '/admin/shows', name: 'Séries', element:  <ListingIndex apiGetPath={'/shows'} key={'shows'}/>},
+        ],
+        errorElement: <NotFound/>
+    },
+    {
+        path: '/settings',
+        element: <RootScreen/>,
+        icon: 'settings',
+        name: 'Paramètres',
+        children: [
+            {path: '/settings', name: 'Profil', element: <Profile/>},
         ],
         errorElement: <NotFound/>
     }
