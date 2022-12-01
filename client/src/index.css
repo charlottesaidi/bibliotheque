@@ -7,11 +7,11 @@
 :root {
     --text-color-theme: #cecece;
     --bg-color-theme: rgb(15 23 42 / var(--tw-bg-opacity));
-    --primary-color: rgb(32,19,54);
-    --secondary-color: #1f242a;
-    --card-bg-transparent: rgb(167 139 250 / .1);
-    --primary-color-transparent: rgb(167 139 250 / .2);
-    --accent-color-text: rgb(159, 105, 255);
+    --accent-color-text: rgb(56, 189, 248);
+    --color-primary: #0284c7;
+    --color-secondary: rgb(15, 23, 42);
+    --color-secondary-transparent: rgb(15 23 42 / .25);
+    --card-bg-transparent: rgb(56 189 248 / .1);
     --success-color: #16a34a;
     --warning-color: #d97706;
     --danger-color: #dc2626;

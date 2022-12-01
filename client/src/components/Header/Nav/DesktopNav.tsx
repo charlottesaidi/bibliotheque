@@ -8,7 +8,7 @@ import Menu from "@components/Header/Nav/Menu";
 const DesktopNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: any) => {
 
     return (
-        <nav id="header" className={`hidden sm:flex flex-col justify-between shadow-lg fixed z-10 left-0 h-full transition-all duration-300 sm:w-250 p-8`}>
+        <nav id="header" className={`hidden sm:flex flex-col justify-between shadow-lg fixed z-10 left-0 h-full transition-all duration-300 sm:w-250 p-8 backdrop-blur border-r border-slate-50/[0.06] supports-backdrop-blur:bg-white/95`}>
             <ul className="w-full flex sm:flex-col items-start justify-around">
                 <li className="w-full pb-8 flex justify-between items-center">
                   <span id="logo" className="flex title-font items-center mb-0">

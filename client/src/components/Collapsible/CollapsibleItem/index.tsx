@@ -10,6 +10,7 @@ interface CollapsibleItemProps {
     accordionClasses?: string,
     buttonClasses?: string,
     headingClasses?: string,
+    bodyClasses?: string
     isOpen?: boolean
 }
 
@@ -38,7 +39,7 @@ const CollapsibleItem = ({...props}: CollapsibleItemProps) => {
                 </div>
                 <Collapse
                     id={props.collapsibleId}
-                    className={collapseStyle(props.isOpen)}
+                    className={collapseStyle(props.isOpen)+' '+props.bodyClasses}
                     aria-labelledby={props.headingId}
                      data-bs-parent={'#'+props.dataBsParent}
                 >

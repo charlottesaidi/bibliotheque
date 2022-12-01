@@ -33,7 +33,7 @@ const Tabs: React.FC<IProps> = ({ tabs }) => {
 };
 
 const Container = styled.div`
-    background: rgb(167 139 250 / .1)
+    background: rgb(56 189 248 / .1)
 `;
 
 const TabContainer = styled.section`
@@ -53,7 +53,7 @@ const TabButton = styled.button`
   align-items: center;
   position: relative;
   transition: 0.6s;
-  background: ${(props: IActive) => (props.active ? "rgb(167 139 250 / .1)" : "")};
+  background: ${(props: IActive) => (props.active ? "rgb(56 189 248 / .1)" : "")};
   &:focus {
     outline: none;
   }

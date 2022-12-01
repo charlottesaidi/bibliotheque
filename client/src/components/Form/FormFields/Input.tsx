@@ -41,7 +41,7 @@ const Input: FC<Props> = ({...props}) => {
                     render={({ field }) => (
                         <input
                             id={props.inputName}
-                            className="w-full appearance-none outline-none block px-3 py-2 border-0 border-b-2 border-gray-400 focus:ring-none focus:border-violet-400/20"
+                            className="w-full appearance-none outline-none block px-3 py-2 border-0 border-b-2 border-gray-400 focus:ring-none focus:border-sky-400/20 md:text-md text-sm"
                             type={props.inputType}
                             placeholder={props.inputPlaceholder}
                             {...field}

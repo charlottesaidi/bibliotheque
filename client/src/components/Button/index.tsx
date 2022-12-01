@@ -19,26 +19,26 @@ interface Style {
 
 const Button: React.FC<Props> = ({buttonLabel, buttonLink, buttonRole, buttonType, onclick}) => {
     const styles: Style = {
-        classes: 'transition-all duration-300 inline-flex items-center justify-center px-4 py-3 border border-slate-100 '
+        classes: 'transition-all duration-300 inline-flex items-center justify-center px-8 py-3 rounded-full '
     };
 
     buttonType == 'submit' ? styles['classes'] += 'w-full ' : '';
 
     switch(buttonRole) {
         case 'primary':
-            styles['classes'] += 'text-white bg-violet-400/[.2] hover:bg-violet-400/[.5] ';
+            styles['classes'] += 'text-sky-400 bg-sky-400/10 hover:bg-sky-400/[.5] ';
             break;
         case 'secondary':
-            styles['classes'] += 'text-stone-50 bg-stone-400/[.5] hover:bg-stone-600/[.5] ';
+            styles['classes'] += 'text-stone-400 bg-stone-400/20 hover:bg-stone-600/[.5] ';
             break;
         case 'success':
-            styles['classes'] += 'text-green-50 bg-green-400/[.5] hover:bg-green-600/[.5] ';
+            styles['classes'] += 'text-green-400 bg-green-400/20 hover:bg-green-600/[.5] ';
             break;
         case 'danger':
-            styles['classes'] += 'text-red-50 bg-red-400/[.5] hover:bg-red-600/[.5] ';
+            styles['classes'] += 'text-red-400 bg-red-400/20 hover:bg-red-600/[.5] ';
             break;
         default:
-            styles['classes'] += 'text-yellow-500 bg-yellow-400/[.5] hover:bg-yellow-600/[.5] ';
+            styles['classes'] += 'text-yellow-400 bg-yellow-400/20 hover:bg-yellow-600/[.5] ';
     }
 
     if(buttonLink) {

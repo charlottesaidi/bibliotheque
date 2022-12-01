@@ -9,8 +9,8 @@ interface Props {
 
 const LinkNav: FC<Props> = ({route, linkClasses}) => {
     const navStyle = (isActive: boolean) => {
-        let style = "sm:flex items-center hover:bg-violet-200/20 p-4 w-full "+linkClasses;
-        style += isActive ? " active disabled bg-violet-400/20" : "";
+        let style = "sm:flex items-center hover:bg-sky-200/20 p-4 w-full "+linkClasses;
+        style += isActive ? " active disabled bg-sky-400/20" : "";
         return style;
     }
 

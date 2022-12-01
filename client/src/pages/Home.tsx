@@ -31,7 +31,7 @@ const Home = () => {
 
     return (
         <>
-            <h2 className="sm:text-4xl text-3xl title-font mb-20">Derniers ajouts</h2>
+            <h2 className="sm:text-4xl text-3xl title-font md:mb-20 mb-10">Derniers ajouts</h2>
             {
                 loading ? <Loader/> :
                     !error ?

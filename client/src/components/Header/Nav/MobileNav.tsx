@@ -4,7 +4,7 @@ import React from "react";
 
 const MobileNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: any) => {
     return (
-        <nav className={"sm:hidden flex flex-row justify-between shadow-xl fixed z-10 bottom-0 w-full px-2"}>
+        <nav className={"sm:hidden flex flex-row justify-between shadow-xl fixed z-10 bottom-0 w-full px-2 backdrop-blur border-t border-slate-50/[0.06] supports-backdrop-blur:bg-white/95 bg-slate-900/75"}>
             <ul className="w-1/2 flex flex-row items-center justify-around">
 
                 {

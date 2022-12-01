@@ -4,8 +4,8 @@ body {
     color: var(--text-color-theme);
 }
 .App {
-    background: rgba(32,19,54,1);
-    background: linear-gradient(180deg, rgba(32,19,54,1) 0%, rgba(27,31,36,1) 100%);
+    background: rgba(15, 23, 42,1);
+    background: linear-gradient(180deg, rgba(30, 45, 81,1) 0%, rgba(15, 23, 42,1) 100%);
 }
 
 body::-webkit-scrollbar {
@@ -18,13 +18,13 @@ body::-webkit-scrollbar-track {
     height: 48px;
 }
 .xng-breadcrumb-trail {
-    color: var(--accent-color-text) !important;
+    color: var(--color-primary) !important;
 }
 input, .input, textarea, select {
     background: transparent;
 }
 *.primary, *.primary-hover:hover {
-    background-color: var(--primary-color-transparent);
+    background-color: var(--color-primary);
 }
 *.primary-link {
     color: var(--accent-color-text)
@@ -43,13 +43,6 @@ h3 {
 }
 .card {
     background: var(--card-bg-transparent);
-}
-.uppy-DragDrop-container {
-    color: var(--text-color-theme);
-    background-color: var(--secondary-color);
-}
-.uppy-c-icon {
-    fill: var(--bg-color-theme)
 }
 
 .strength-1,
@@ -95,7 +88,7 @@ h3 {
     }
     body[data-leftbar-size=condensed] nav .accordion-item:hover {
         width: 250px;
-        background: var(--secondary-color);
+        background: var(--color-secondary-transparent);
     }
     body[data-leftbar-size=condensed] nav .accordion-item:hover .collapse.show,
     body[data-leftbar-size=condensed] nav .accordion-item:hover .nav-link-label,
@@ -135,7 +128,6 @@ h3 {
 
 @media (max-width: 640px) {
     nav.sm\:hidden {
-        background-color: var(--primary-color);
         height: 64px;
     }
     nav.sm\:hidden button.nav-link {

@@ -18,14 +18,17 @@ const Menu = (routes: RoutesProps[], dataCollapseParent: string) => {
         return !(route.path == '/admin' && !admin);
     }
 
+    const commonClasses = 'backdrop-blur-2xl supports-backdrop-blur:bg-white/95 ';
+
     return routes.filter((route) => route.name !== undefined)
         .map(( route, index ) => {
 
             return route.children ?
                 (
                     <CollapsibleItem
-                        accordionClasses={routeAdminAccessible(route) ? 'block' : 'hidden'}
+                        accordionClasses={`${commonClasses} ${routeAdminAccessible(route) ? 'block' : 'hidden'}`}
                         headingClasses={"py-3"}
+                        bodyClasses={commonClasses}
                         key={index+'-'+route.name}
                         isOpen={matchPath(route.path || '')}
                         headingId={'heading_'+route.name}
