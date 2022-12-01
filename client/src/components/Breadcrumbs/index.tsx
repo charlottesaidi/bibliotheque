@@ -7,7 +7,7 @@ const Breadcrumb: FC = () => {
 
     return (
         <>
-            <nav className="px-5">
+            <nav className="mb-4">
                 <ol itemScope itemType="https://schema.org/BreadcrumbList" className="flex items-center text-xs sm:text-base">
                     {breadcrumbs.map(({ match, breadcrumb }, i) => (
                         <li key={match.pathname}>

@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Table(name: "admin")]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -26,6 +27,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotCompromisedPassword]#[Assert\Length(
+        min: 8,
+        minMessage: 'Le mot de passe de passe doit avoir 8 caractères minimum',
+    )]
     private ?string $password = null;
 
     public function getId(): ?int

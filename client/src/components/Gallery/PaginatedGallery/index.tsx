@@ -33,7 +33,7 @@ const PaginatedGallery: FC<Props> = ({itemsPerPage, items, category}) => {
 
   return (
     <>
-    <div className="grid grid-cols-1 gap-2 p-2 lg:grid-cols-4 md:grid-cols-3 w-full h-full">
+    <div className="grid grid-cols-1 gap-2 lg:grid-cols-4 md:grid-cols-3 w-full h-full">
       {currentItems?.map((item: any) => (
             <Card
                 key={item.id}
@@ -51,7 +51,7 @@ const PaginatedGallery: FC<Props> = ({itemsPerPage, items, category}) => {
             pageRangeDisplayed={5}
             pageCount={pageCount}
             previousLabel="<"
-            containerClassName={"flex flex-row justify-center items-center mt-3"}
+            containerClassName={"flex flex-row justify-center items-center mt-5"}
             pageLinkClassName={paginationLinksClassName}
             previousLinkClassName={paginationLinksClassName}
             nextLinkClassName={paginationLinksClassName}

@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import Loader from '@components/Loader';
 import ErrorAlert from '@components/ErrorAlert';
-import { isAdmin } from '@services/api/auth/AuthenticationService';
+import {isAdmin, useToken} from '@services/api/auth/AuthenticationService';
 import {Link} from 'react-router-dom';
 import folderIcon from '@assets/images/svgs/folder.svg';
 import Forbidden from "@pages/Error/ForbiddenPage";
 
 const Dashboard: React.FC = () => {
-    const admin = isAdmin(sessionStorage.getItem('token'));
+    const { token } = useToken();
 
-    if(!admin) {
+    if(!isAdmin(token)) {
         return <Forbidden/>
     }
 
@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
 
     return (
 
-        <div className="px-5">
+        <div className="">
             {
                 loading ? <Loader/> :
                     !error ?

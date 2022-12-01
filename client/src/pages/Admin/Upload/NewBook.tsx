@@ -4,26 +4,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import UploadBookForm from "@components/Form/uploadBookForm";
 import {upload} from "@services/api/ViewerService";
 import Loader from "@components/Loader";
-import {isAdmin} from "@services/api/auth/AuthenticationService";
+import {isAdmin, useToken} from "@services/api/auth/AuthenticationService";
 import Forbidden from "@pages/Error/ForbiddenPage";
 
 const NewBook = () => {
-    const admin = isAdmin(sessionStorage.getItem('token'));
+    const { token } = useToken();
 
-    if(!admin) {
+    if(!isAdmin(token)) {
         return <Forbidden/>
     }
 
     const [loading, setLoading] = React.useState<boolean>(false);
-
-    const methods = useForm({});
-    const {
-        handleSubmit,
-        register,
-        setValue,
-        formState: { errors },
-        reset,
-    } = methods;
 
     const submit = async (data: any) => {
         setLoading(true)
@@ -41,18 +32,17 @@ const NewBook = () => {
             })
         }
 
-        reset();
         setLoading(false)
     }
 
     return (
-        <div className={'mt-5 px-5'}>
+        <div className={''}>
 
             <ToastContainer />
 
             {loading ? <Loader /> : null}
 
-            <UploadBookForm register={register} setValue={setValue} handleSubmit={handleSubmit(submit)} errors={errors}/>
+            <UploadBookForm handleUploadSubmit={submit} />
         </div>
     )
 }

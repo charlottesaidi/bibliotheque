@@ -31,12 +31,12 @@ const Home = () => {
 
     return (
         <>
-            <h2 className="px-5 sm:text-4xl text-3xl title-font">Derniers ajouts</h2>
+            <h2 className="sm:text-4xl text-3xl title-font mb-20">Derniers ajouts</h2>
             {
                 loading ? <Loader/> :
                     !error ?
                         latestPublications.map((publication: any) => (
-                            <section key={publication.category}>
+                            <section key={publication.category} className={'mb-10'}>
                                 <Gallery pageTitle={publication.name} items={publication.items} category={publication.category}/>
                             </section>
                         ))

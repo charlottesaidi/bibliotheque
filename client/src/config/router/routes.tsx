@@ -9,7 +9,8 @@ import NewBook from "@pages/Admin/Upload/NewBook";
 import ListingIndex from "@pages/Admin/ListingIndex";
 import GalleryIndex from "@pages/Viewers/GalleryIndex";
 import Viewer from "@pages/Viewers/Viewer";
-import {Profile} from "@pages/Settings/Profile";
+import SettingIndex from "@pages/Settings/SettingIndex";
+import Tabs from "@components/Tabs";
 
 export const routes: RoutesProps[] = [
     {
@@ -34,10 +35,57 @@ export const routes: RoutesProps[] = [
         icon: 'folder',
         children: [
             {path: '/admin', name: 'Dashboard', element: <Dashboard/>},
-            {path: '/admin/books', name: 'eBooks', element: <ListingIndex apiGetPath={'/books'} key={'books'} appUploadPath={'/admin/books/new'} apiDeletePath={'/book'}/>},
-            {path: '/admin/books/new', element: <NewBook/>},
-            {path: '/admin/movies', name: 'Films', element:  <ListingIndex apiGetPath={'/movies'} key={'movies'}/>},
-            {path: '/admin/shows', name: 'Séries', element:  <ListingIndex apiGetPath={'/shows'} key={'shows'}/>},
+            {
+                path: '/admin/books',
+                name: 'eBooks',
+                element: <Tabs
+                    tabs={[
+                        {
+                            title: "Liste",
+                            render: () => <ListingIndex apiGetPath={'/books'} key={'books'} apiDeletePath={'/book'}/>
+
+                        },
+                        {
+                            title: "Upload",
+                            render: () => <NewBook/>
+                        },
+                    ]}
+                />
+            },
+            {
+                path: '/admin/movies',
+                name: 'Films',
+                element: <Tabs
+                    tabs={[
+                        {
+                            title: "Liste",
+                            render: () => <ListingIndex apiGetPath={'/movies'} key={'movies'}/>
+
+                        },
+                        {
+                            title: "Upload",
+                            render: () => <></>
+                        },
+                    ]}
+                />
+            },
+            {
+                path: '/admin/shows',
+                name: 'Séries',
+                element:  <Tabs
+                    tabs={[
+                        {
+                            title: "Liste",
+                            render: () => <ListingIndex apiGetPath={'/shows'} key={'shows'}/>
+
+                        },
+                        {
+                            title: "Upload",
+                            render: () => <></>
+                        },
+                    ]}
+                />
+            },
         ],
         errorElement: <NotFound/>
     },
@@ -47,7 +95,7 @@ export const routes: RoutesProps[] = [
         icon: 'settings',
         name: 'Paramètres',
         children: [
-            {path: '/settings', name: 'Profil', element: <Profile/>},
+            {path: '/settings', name: 'Profil', element: <SettingIndex/>},
         ],
         errorElement: <NotFound/>
     }

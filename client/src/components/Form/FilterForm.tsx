@@ -7,7 +7,7 @@ import Select from "@components/Form/FormFields/Select";
 
 interface FilterProps {
     onFilter: any,
-    onReset: any
+    onReset: any,
 }
 
 const Filter: FC<FilterProps> = ({onFilter, onReset}) => {
@@ -18,6 +18,7 @@ const Filter: FC<FilterProps> = ({onFilter, onReset}) => {
     const {
         handleSubmit,
         register,
+        control,
         reset
     } = methods;
 
@@ -41,6 +42,7 @@ const Filter: FC<FilterProps> = ({onFilter, onReset}) => {
                         inputName={"title"}
                         inputLabel={"Par titre"}
                         register={register}
+                        control={control}
                     />
 
                     <Input
@@ -49,6 +51,7 @@ const Filter: FC<FilterProps> = ({onFilter, onReset}) => {
                         inputName={"author"}
                         inputLabel={"Par auteur"}
                         register={register}
+                        control={control}
                     />
 
                     {

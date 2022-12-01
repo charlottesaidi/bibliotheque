@@ -43,7 +43,7 @@ const InputFile = ({containerClasses, inputLabel, inputName, register, errors, s
                     : null
             }
             <div className="container">
-                <Container className={'bg-slate-800'} {...getRootProps({isFocused, isDragAccept, isDragReject})}>
+                <Container {...getRootProps({isFocused, isDragAccept, isDragReject})}>
                     <input type={'file'} name={inputName} {...getInputProps()} />
                     <p className={'font-bold'}>
                         <i className={'icon-cloud-upload text-lg pr-3'}></i>

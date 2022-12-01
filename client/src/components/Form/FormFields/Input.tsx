@@ -1,8 +1,9 @@
-import React, {FC} from "react";
-import {UseFormReturn} from "react-hook-form/dist/types/form";
+import React, {ChangeEvent, ChangeEventHandler, FC, ReactElement} from "react";
+import {Control, UseFormReturn} from "react-hook-form/dist/types/form";
 import {FieldErrors} from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
 import ErrorAlert from "@components/ErrorAlert";
+import { Controller } from "react-hook-form";
 
 interface Props {
     containerClasses?: string,
@@ -12,32 +13,54 @@ interface Props {
     inputPlaceholder?: string,
     inputValue?: string,
     register: UseFormReturn["register"],
-    errors?: FieldErrors
+    errors?: FieldErrors,
+    control: Control
+    handleChangeEvent?: ChangeEventHandler
+    constraintOptions?: any
+    helper?: ReactElement
+    interactionIcon?: ReactElement
 }
 
-const Input: FC<Props> = ({containerClasses, inputType, inputLabel, inputName, inputPlaceholder, inputValue, register, errors}) => {
+const Input: FC<Props> = ({...props}) => {
+
     return (
-        <div className={containerClasses}>
-            {inputLabel ?
+        <div className={props.containerClasses}>
+            {props.inputLabel ?
                 <label className="inline-block font-medium text-sm mb-1.5">
-                    {inputLabel}
+                    {props.inputLabel}
                 </label>
                 : null
             }
-            <input
-                id={inputName}
-                className="w-full appearance-none outline-none block p-1.5 border-0 border-b-2 border-gray-400 focus:ring-none focus:border-violet-700"
-                type={inputType}
-                placeholder={inputPlaceholder}
-                value={inputValue}
-                {...register(inputName, {required: 'Champ obligatoire'})}
-            />
+
+            <div className={'inputContainer relative'}>
+                <Controller
+                    control={props.control}
+                    name={props.inputName}
+                    defaultValue={props.inputValue ?? ''}
+                    rules={props.constraintOptions}
+                    render={({ field }) => (
+                        <input
+                            id={props.inputName}
+                            className="w-full appearance-none outline-none block px-3 py-2 border-0 border-b-2 border-gray-400 focus:ring-none focus:border-violet-400/20"
+                            type={props.inputType}
+                            placeholder={props.inputPlaceholder}
+                            {...field}
+                            {...props.register(props.inputName, {
+                                onChange: (e) => {props.handleChangeEvent ? props.handleChangeEvent(e) : null},
+                            })}
+                        />
+                    )}
+                />
+                {props.interactionIcon ?? null}
+            </div>
+
+            {props.helper ?? null}
 
             {
-                errors ?
+                props.errors ?
                     <ErrorMessage
-                        errors={errors}
-                        name={inputName}
+                        errors={props.errors}
+                        name={props.inputName}
                         render={({message}) => <ErrorAlert message={message}/>}
                     />
                 : null

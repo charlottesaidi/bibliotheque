@@ -24,20 +24,20 @@ const MainLayout: React.FC<Props> = ({children, withBreadcrumb}) => {
     }, [leftSideBarType]);
 
     return (
-        <div>
+        <>
             <Header />
 
-            <div id="main_container" className={`sm:ml-250 p-0 sm:p-6 sm:mb-0 transition-all duration-300`}>
-                <section className="sm:pt-10 pt-5">
+            <div id="main_container" className={`sm:ml-250 pb-20 pt-8 transition-all duration-300`}>
+                <section className="w-[90%] mx-auto">
                     {withBreadcrumb ?
                         <Breadcrumb/> : ''
                     }
-                    <div className={'main_section mt-4'}>
+                    <div className={'main_section'}>
                         {children}
                     </div>
                 </section>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -3,7 +3,7 @@ import {RequestOptions} from "@services/api/core";
 import {get} from "@services/api/ViewerService";
 import Collapsible from "@components/Collapsible";
 import CollapsibleItem from "@components/Collapsible/CollapsibleItem";
-import Filter from "@components/Form/Filter";
+import Filter from "@components/Form/FilterForm";
 import Loader from "@components/Loader";
 import Gallery from "@components/Gallery";
 import ErrorAlert from "@components/ErrorAlert";
@@ -52,7 +52,7 @@ const GalleryIndex = ({...props}: fetchResources) => {
 
     return (
         <>
-            <div className={'flex flex-col m-7 shadow-lg'}>
+            <div className={'flex flex-col my-7 shadow-lg'}>
 
                 <Collapsible
                     accordionId={'search_accordion'}

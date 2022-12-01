@@ -45,7 +45,7 @@ class ShowRepository extends ServiceEntityRepository
     public function getAll(): array {
         return $this->createQueryBuilder('s')
             ->select('s, e')
-            ->innerJoin('s.episode', 'e')
+            ->innerJoin('s.episodes', 'e')
             ->orderBy('s.id', 'DESC')
             ->getQuery()->getArrayResult();
     }

@@ -21,7 +21,7 @@ body::-webkit-scrollbar-track {
     color: var(--accent-color-text) !important;
 }
 input, .input, textarea, select {
-    background: var(--secondary-color)
+    background: transparent;
 }
 *.primary, *.primary-hover:hover {
     background-color: var(--primary-color-transparent);
@@ -42,7 +42,7 @@ h3 {
     opacity: .7
 }
 .card {
-    background: var(--secondary-color);
+    background: var(--card-bg-transparent);
 }
 .uppy-DragDrop-container {
     color: var(--text-color-theme);
@@ -51,6 +51,18 @@ h3 {
 .uppy-c-icon {
     fill: var(--bg-color-theme)
 }
+
+.strength-1,
+.strength-0s { color: var(--danger-color); }
+.strength-2 { color: var(--warning-color); }
+.strength-3 { color: var(--info-color); }
+.strength-4 { color: var(--success-color); }
+
+.bg-strength-1,
+.bg-strength-0s { background-color: var(--danger-color); }
+.bg-strength-2 { background-color: var(--warning-color); }
+.bg-strength-3 { background-color: var(--info-color); }
+.bg-strength-4 { background-color: var(--success-color); }
 
 @media (min-width: 640px) {
     .sm\:w-250 {
@@ -128,9 +140,6 @@ h3 {
     }
     nav.sm\:hidden button.nav-link {
         height: 100%
-    }
-    #main_container {
-        margin-bottom: 48px;
     }
     .xng-breadcrumb-link, .xng-breadcrumb-separator, .xng-breadcrumb-trail {
         font-size: 0.8rem;

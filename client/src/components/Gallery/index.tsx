@@ -12,7 +12,7 @@ const Gallery: FC<Props> = ({pageTitle, items, category}) => {
   const reducedList = items.length <= 4;
 
   return (
-    <div className="px-5 py-5 mx-auto">
+    <>
 
       {
           pageTitle != null ? (
@@ -36,14 +36,14 @@ const Gallery: FC<Props> = ({pageTitle, items, category}) => {
                     {
                         reducedList ?
                         <div className="flex w-full mt-5 flex-wrap justify-end">
-                        <Button buttonLabel='Plus' buttonRole='primary' buttonLink='/books'/>
+                          <Button buttonLabel='Plus' buttonRole='primary' buttonLink='/books'/>
                         </div> : ''
                     }
                 </>
             )
         }
 
-    </div>
+    </>
   )
 };
 

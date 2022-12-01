@@ -1,24 +1,18 @@
 import React, { FC } from 'react';
 import ListItem from "@components/List/ListItem";
-import Button from "@components/Button";
 import {ToastContainer} from "react-toastify";
 
 interface ListProps {
     items: any,
-    uploadUrl?: string
     deletePath?: string
 }
 
-const List: FC<ListProps> = ({items, uploadUrl, deletePath}) => (
+const List: FC<ListProps> = ({items, deletePath}) => (
     <div className="flex flex-col">
         <div className="overflow-x-auto">
-            <div className="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="inline-block min-w-full">
 
                 <ToastContainer />
-
-                <div className={'flex items-center p-2'}>
-                    <Button buttonLabel={'+'} buttonRole={'primary'} buttonLink={uploadUrl}/>
-                </div>
 
                 <div className="overflow-hidden mt-3">
                     <table className="min-w-full">

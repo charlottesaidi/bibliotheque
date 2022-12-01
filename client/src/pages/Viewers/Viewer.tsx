@@ -19,7 +19,7 @@ Object.entries(VideoFileTypes).map(([, value]) => {videoFileTypes.push(value)})
 function Viewer(file: any) {
     return bookFileTypes.find((type) => type == file.type) ?
         <Ebook file={file} /> : bookFileTypes.find((type) => type == file.type) ?
-            <div className="mt-3 p-3 leading-normal text-blue-700 border border-blue-500" role="info">
+            <div className="mt-3 leading-normal text-blue-700 border border-blue-500" role="info">
                 <p>Composant vidéo en cours de développement...</p>
             </div> :
                 <ErrorAlert message={'Une erreur est survenue : extension de fichier inconnu'}/>

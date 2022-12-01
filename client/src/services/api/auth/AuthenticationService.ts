@@ -73,10 +73,18 @@ export const loginUser = async (params: FieldValues) => {
         return response;
 }
 
-export const forgotPassword = async (params: FieldValues) => {
+export const resetPassword = async (params: FieldValues, token: string) => {
+    const formData = new FormData();
+    for(const k in params) {
+        formData.append(k, params[k])
+    }
+    const parsedToken = parseJwt(token);
+    formData.append('user_email', parsedToken.username);
+
     const response: IResponse = {};
-    await api.create('/forget-password', params).then((res) => {
-        response['data'] = res.data.token;
+    await api.create('/user/reset-password', formData).then((res) => {
+         console.log(res.data)
+        response['data'] = res.data;
     }).catch((err) => {
         response['error'] = err;
     });

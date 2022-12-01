@@ -69,7 +69,6 @@ const Pdf: FC<Props> = ({filePath}) => {
 const Container = styled.div`
     &.document {
         height: calc(100vh - 122px);
-        padding-top: 1rem
     }
 `
 // const Button = styled.div`
