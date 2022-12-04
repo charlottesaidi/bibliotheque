@@ -2,22 +2,38 @@ import React, { FC } from 'react';
 import ListItem from "@components/List/ListItem";
 import {ToastContainer} from "react-toastify";
 import FlashMessage from "@components/FlashMessage";
+import useStyles from "@hooks/useStyle";
+import usePagination from "@hooks/usePagination";
+import {Pagination} from "@mui/material";
 
 interface ListProps {
     items: any,
     deletePath?: string
 }
 
-const List: FC<ListProps> = ({items, deletePath}) => (
-    <div className="flex flex-col">
-        <div className="overflow-x-auto">
-            <div className="inline-block min-w-full">
+const List: FC<ListProps> = ({items, deletePath}) => {
+    const classes = useStyles();
+    const [page, setPage] = React.useState(1);
+    const PER_PAGE = 5;
 
-                <ToastContainer />
+    const count = Math.ceil(items.length / PER_PAGE);
+    const _DATA = usePagination(items, PER_PAGE);
 
-                <div className="overflow-hidden mt-3">
-                    <table className="min-w-full">
-                        <thead className="border-b text-left">
+    const handleChange = (e: any, p: number) => {
+        setPage(p);
+        _DATA.jump(p);
+    };
+
+    return (
+        <div className="flex flex-col">
+            <div className="overflow-x-auto">
+                <div className="inline-block min-w-full">
+
+                    <ToastContainer/>
+
+                    <div className="overflow-hidden mt-3">
+                        <table className="min-w-full">
+                            <thead className="border-b text-left">
                             <tr>
                                 <th scope="col" className="text-sm font-bold px-6 py-2">
                                     Nom
@@ -35,21 +51,39 @@ const List: FC<ListProps> = ({items, deletePath}) => (
                                     Actions
                                 </th>
                             </tr>
-                        </thead>
-                        <tbody>
+                            </thead>
+                            <tbody>
                             {
                                 items && items.length > 0 ?
-                                    items.map((item: any) => (
-                                        <ListItem key={item.id} item={item} deletePath={deletePath}></ListItem>
-                                    )) :
-                                    <FlashMessage message={'La bibliothèque est vide<'} roleClass={'secondary'}/>
+                                    items.length <= PER_PAGE ?
+                                        items.map((item: any) => (
+                                            <ListItem key={item.id} item={item} deletePath={deletePath}></ListItem>
+                                        ))
+                                    : <>
+                                            {_DATA.currentData().map((item: any) => {
+                                                return (
+                                                    <ListItem key={item.id} item={item} deletePath={deletePath}></ListItem>
+                                                )
+                                            })}
+                                            <Pagination
+                                                count={count}
+                                                size={"large"}
+                                                page={page}
+                                                variant={"outlined"}
+                                                color={'primary'}
+                                                onChange={handleChange}
+                                                classes={{root: classes.root, ul: classes.ul}}
+                                            />
+                                        </>
+                                : <FlashMessage message={'La bibliothèque est vide<'} roleClass={'secondary'}/>
                             }
-                        </tbody>
-                     </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-);
+    );
+}
 
 export default List;
