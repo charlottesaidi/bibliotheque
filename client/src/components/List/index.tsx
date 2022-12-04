@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import ListItem from "@components/List/ListItem";
 import {ToastContainer} from "react-toastify";
+import FlashMessage from "@components/FlashMessage";
 
 interface ListProps {
     items: any,
@@ -41,9 +42,7 @@ const List: FC<ListProps> = ({items, deletePath}) => (
                                     items.map((item: any) => (
                                         <ListItem key={item.id} item={item} deletePath={deletePath}></ListItem>
                                     )) :
-                                        <tr>
-                                            <td className="text-sm font-light px-6 py-2 whitespace-nowrap">La bibliothèque est vide</td>
-                                        </tr>
+                                    <FlashMessage message={'La bibliothèque est vide<'} roleClass={'secondary'}/>
                             }
                         </tbody>
                      </table>

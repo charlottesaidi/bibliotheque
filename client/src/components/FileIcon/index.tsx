@@ -9,9 +9,10 @@ import defaultFile from '@assets/images/svgs/file-icon.svg';
 
 interface IconProps {
     fileType: string
+    classes?: string
 }
 
-const FileIcon: FC<IconProps> = ({fileType}) => {
+const FileIcon: FC<IconProps> = ({fileType, classes}) => {
 
     const getIconSource = () => {
         let iconSource = '';
@@ -39,7 +40,7 @@ const FileIcon: FC<IconProps> = ({fileType}) => {
 
     return (
         <>
-            <img src={getIconSource()} />
+            <img src={getIconSource()} className={classes}/>
         </>
     )
 }

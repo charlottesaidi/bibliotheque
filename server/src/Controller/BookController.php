@@ -21,11 +21,12 @@ class BookController extends AbstractController
     public function index(Request $request): JsonResponse
     {
         try {
-            $repository = $this->doctrine->getRepository(Book::class);
+            $bookRepository = $this->doctrine->getRepository(Book::class);
+            $genreRepository = $this->doctrine->getRepository(Genre::class);
 
-            $requestParam = $request->query;
+            $genre = $genreRepository->findOneBy(['name' => $request->query->get('genre')]);
 
-            $books = $requestParam ? $repository->getSearchedBooks($requestParam->get('title'), $requestParam->get('author')) : $repository->getAll();
+            $books = $request->query ? $bookRepository->getSearchedBooks($request->query->get('title'), $request->query->get('author'), $genre) : $bookRepository->getAll();
 
             if(null == $books) {
                 throw $this->createNotFoundException();

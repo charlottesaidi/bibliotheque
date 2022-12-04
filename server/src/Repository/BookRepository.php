@@ -83,19 +83,22 @@ class BookRepository extends ServiceEntityRepository
     /**
      * @return Book[] Returns an array of Book by title
      */
-    public function getSearchedBooks(string | null $title, string | null $author): array {
+    public function getSearchedBooks(?string $title, ?string $author, ?Genre $genre): array {
         $query = $this->createQueryBuilder('b') 
             ->select('b, f, g')
             ->innerJoin('b.file', 'f')
             ->innerJoin('b.genres', 'g');
 
-        if($title != null) {
+        if($title) {
             $query->where('b.title LIKE :title')
                 ->setParameter('title', '%'.$title.'%');
-        } elseif($author != null) {
+        } elseif($author) {
             $query->where('b.author LIKE :author')
                 ->setParameter('author', '%'.$author.'%');
-        } elseif($title != null && $author != null) {
+        } elseif($genre) {
+            $query->where(':genre MEMBER OF b.genres')
+                ->setParameter(':genre', $genre);
+        } elseif($title && $author) {
             $query->where('b.title LIKE :title')
                 ->andWhere('b.author LIKE :author')
                 ->setParameters(['title' => '%'.$title.'%', 'author' => '%'.$author.'%']);

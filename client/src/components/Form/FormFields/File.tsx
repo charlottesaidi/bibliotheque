@@ -3,7 +3,7 @@ import {UseFormReturn} from "react-hook-form/dist/types/form";
 import {useDropzone} from 'react-dropzone';
 import styled from 'styled-components';
 import {FieldErrors} from "react-hook-form";
-import ErrorAlert from "@components/ErrorAlert";
+import FlashMessage from "@components/FlashMessage";
 import {ErrorMessage} from "@hookform/error-message";
 
 interface Props {
@@ -63,7 +63,7 @@ const InputFile = ({containerClasses, inputLabel, inputName, register, errors, s
                         <ErrorMessage
                             errors={errors}
                             name={inputName}
-                            render={({message}) => <ErrorAlert message={message}/>}
+                            render={({message}) => <FlashMessage message={message} roleClass={'danger'}/>}
                         />
                         : null
                 }

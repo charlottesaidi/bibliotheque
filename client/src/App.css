@@ -33,7 +33,8 @@ input, .input, textarea, select {
     color: var(--accent-color-text)
 }
 *.hover-svg-active:hover, *.hover-svg-active:hover>path {
-    stroke: var(--accent-color-text)
+    stroke: var(--accent-color-text);
+    fill: var(--accent-color-text)
 }
 h3 {
     opacity: .7
@@ -70,7 +71,7 @@ h3 {
     }
     body[data-leftbar-size=condensed] .sm\:w-250 li,
     body[data-leftbar-size=condensed] .sm\:w-250 .nav-link,
-    body[data-leftbar-size=condensed] .sm\:w-250 .nav-link i {
+    body[data-leftbar-size=condensed] .sm\:w-250 .nav-link svg {
         width: 100%;
     }
     body[data-leftbar-size=condensed] nav .accordion-item .nav-link-label,
@@ -102,10 +103,10 @@ h3 {
         width: calc(100% - 64px);
         background: inherit
     }
-    body[data-leftbar-size=condensed] nav .accordion-item:hover i.sm\:mr-3 {
+    body[data-leftbar-size=condensed] nav .accordion-item:hover svg.sm\:mr-3 {
         margin: 0 2.26rem 0 0.89rem;
     }
-    body[data-leftbar-size=condensed] .sm\:w-250 i.sm\:mr-3 {
+    body[data-leftbar-size=condensed] .sm\:w-250 svg.sm\:mr-3 {
         padding: 0;
         margin: auto;
     }

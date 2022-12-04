@@ -2,7 +2,7 @@ import React, {ChangeEvent, ChangeEventHandler, FC, ReactElement} from "react";
 import {Control, UseFormReturn} from "react-hook-form/dist/types/form";
 import {FieldErrors} from "react-hook-form";
 import { ErrorMessage } from '@hookform/error-message';
-import ErrorAlert from "@components/ErrorAlert";
+import FlashMessage from "@components/FlashMessage";
 import { Controller } from "react-hook-form";
 
 interface Props {
@@ -46,7 +46,7 @@ const Input: FC<Props> = ({...props}) => {
                             placeholder={props.inputPlaceholder}
                             {...field}
                             {...props.register(props.inputName, {
-                                onChange: (e) => {props.handleChangeEvent ? props.handleChangeEvent(e) : null},
+                                onChange: (e) => {props.handleChangeEvent ? props.handleChangeEvent(e) : null}
                             })}
                         />
                     )}
@@ -61,7 +61,7 @@ const Input: FC<Props> = ({...props}) => {
                     <ErrorMessage
                         errors={props.errors}
                         name={props.inputName}
-                        render={({message}) => <ErrorAlert message={message}/>}
+                        render={({message}) => <FlashMessage message={message} roleClass={'danger'}/>}
                     />
                 : null
             }

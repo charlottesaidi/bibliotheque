@@ -1,6 +1,7 @@
 import {RoutesProps} from "@config/router/router.config";
 import LinkNav from "@components/Header/Link";
 import React from "react";
+import {SlLogout} from "react-icons/sl";
 
 const MobileNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: any) => {
     return (
@@ -15,8 +16,8 @@ const MobileNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: a
 
             </ul>
 
-            <button onClick={logOut} className="nav-link hover:bg-cyan-200/20 flex items-center justify-end p-2.5 md:w-full">
-                <i className={'icon-logout'}/>
+            <button onClick={logOut} className="nav-link hover:bg-cyan-200/20 flex items-center justify-end p-4 md:w-full">
+                <SlLogout/>
             </button>
         </nav>
     )

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Loader from '@components/Loader';
-import ErrorAlert from '@components/ErrorAlert';
+import FlashMessage from '@components/FlashMessage';
 import {isAdmin, useToken} from '@services/api/auth/AuthenticationService';
 import {Link} from 'react-router-dom';
 import folderIcon from '@assets/images/svgs/folder.svg';
@@ -55,7 +55,7 @@ const Dashboard: React.FC = () => {
                             ))}
                         </div>)
                         :
-                        <ErrorAlert message={error}/>
+                        <FlashMessage message={error} roleClass={'danger'}/>
             }
         </div>
 

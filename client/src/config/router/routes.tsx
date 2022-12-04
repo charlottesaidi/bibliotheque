@@ -11,13 +11,14 @@ import GalleryIndex from "@pages/Viewers/GalleryIndex";
 import Viewer from "@pages/Viewers/Viewer";
 import SettingIndex from "@pages/Settings/SettingIndex";
 import Tabs from "@components/Tabs";
+import {SlBookOpen, SlFolderAlt, SlSettings} from "react-icons/sl";
 
 export const routes: RoutesProps[] = [
     {
         path: '/',
         name: 'Lecteur',
         element: <RootScreen/>,
-        icon: 'book-open',
+        icon: <SlBookOpen className={'sm:mr-3'}/>,
         children: [
             {path: '/', name: 'Accueil', element: <Home/>},
             {path: '/books', name: 'eBooks', children: [
@@ -32,7 +33,7 @@ export const routes: RoutesProps[] = [
         path: '/admin',
         name: 'Admin',
         element: <RootScreen/>,
-        icon: 'folder',
+        icon: <SlFolderAlt className={'sm:mr-3'}/>,
         children: [
             {path: '/admin', name: 'Dashboard', element: <Dashboard/>},
             {
@@ -92,7 +93,7 @@ export const routes: RoutesProps[] = [
     {
         path: '/settings',
         element: <RootScreen/>,
-        icon: 'settings',
+        icon: <SlSettings className={'sm:mr-3'}/>,
         name: 'Paramètres',
         children: [
             {path: '/settings', name: 'Profil', element: <SettingIndex/>},

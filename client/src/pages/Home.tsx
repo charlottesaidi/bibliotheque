@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Gallery from '@components/Gallery';
 import {get} from '@services/api/ViewerService';
 import Loader from '@components/Loader';
-import ErrorAlert from '@components/ErrorAlert';
+import FlashMessage from '@components/FlashMessage';
 
 const requestOptions = {
     storageKey: 'latestPublications',
@@ -36,12 +36,12 @@ const Home = () => {
                 loading ? <Loader/> :
                     !error ?
                         latestPublications.map((publication: any) => (
-                            <section key={publication.category} className={'mb-10'}>
+                            <section key={publication.category} className={'pb-10'}>
                                 <Gallery pageTitle={publication.name} items={publication.items} category={publication.category}/>
                             </section>
                         ))
                         :
-                        <ErrorAlert message={error}/>
+                        <FlashMessage message={error} roleClass={'danger'}/>
             }
         </>
     )

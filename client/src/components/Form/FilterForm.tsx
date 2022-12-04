@@ -4,6 +4,7 @@ import {get} from "@services/api/ViewerService";
 import Input from "@components/Form/FormFields/Input";
 import {useForm} from "react-hook-form";
 import Select from "@components/Form/FormFields/Select";
+import {SlMagnifier, SlRefresh} from "react-icons/sl";
 
 interface FilterProps {
     onFilter: any,
@@ -69,10 +70,20 @@ const Filter: FC<FilterProps> = ({onFilter, onReset}) => {
                 <div className="flex flex-wrap sm:justify-end justify-center w-full mt-6">
             
                     <div className="mx-1 my-1">
-                        <Button buttonLabel={'Réinitialiser'} buttonRole={'secondary'} onclick={() => {onReset(); reset()}}/>
+                        <Button buttonRole={'secondary'} onclick={() => {onReset(); reset()}} buttonLabel={
+                            <>
+                                <SlRefresh className={'sm:mr-3'}/>
+                                <span className={'sm:inline hidden'}>Réinitialiser</span>
+                            </>
+                        } />
                     </div>
                     <div className="mx-1 my-1">
-                        <Button buttonRole={"primary"} buttonType={"submit"} buttonLabel={"Rechercher"}/>
+                        <Button buttonRole={"primary"} buttonType={"submit"} buttonLabel={
+                            <>
+                                <SlMagnifier className={'sm:mr-3'}/>
+                                <span className={'sm:inline hidden'}>Rechercher</span>
+                            </>
+                        }/>
                     </div>
             
                 </div>

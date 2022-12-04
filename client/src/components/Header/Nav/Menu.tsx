@@ -3,30 +3,26 @@ import CollapsibleItem from "@components/Collapsible/CollapsibleItem";
 import LinkNav from "@components/Header/Link";
 import React from "react";
 import {useLocation} from "react-router-dom";
-import {isAdmin} from "@services/api/auth/AuthenticationService";
+import {routeAdminAccessible, useToken} from "@services/api/auth/AuthenticationService";
 
 const Menu = (routes: RoutesProps[], dataCollapseParent: string) => {
-    const admin = isAdmin(sessionStorage.getItem('token'));
-
+    const {token} = useToken();
     const location = useLocation()
 
     const matchPath = (path: string) => {
         return path == location.pathname.split('/')[1];
     }
 
-    const routeAdminAccessible = (route: RoutesProps) => {
-        return !(route.path == '/admin' && !admin);
-    }
-
     const commonClasses = 'backdrop-blur-2xl supports-backdrop-blur:bg-white/95 ';
 
     return routes.filter((route) => route.name !== undefined)
+        .filter((route) => routeAdminAccessible(route, token))
         .map(( route, index ) => {
 
             return route.children ?
                 (
                     <CollapsibleItem
-                        accordionClasses={`${commonClasses} ${routeAdminAccessible(route) ? 'block' : 'hidden'}`}
+                        accordionClasses={`${commonClasses}`}
                         headingClasses={"py-3"}
                         bodyClasses={commonClasses}
                         key={index+'-'+route.name}
@@ -37,8 +33,7 @@ const Menu = (routes: RoutesProps[], dataCollapseParent: string) => {
                         title={
                             <>
                                 {
-                                    route.icon ?
-                                        <i className={'icon-'+route.icon+' sm:mr-3'}/> : ''
+                                    route.icon ?? ''
                                 }
                                 <span className="nav-link-label" style={{lineHeight: '1'}}>{route.name}</span>
                             </>

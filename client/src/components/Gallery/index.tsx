@@ -1,6 +1,8 @@
 import Button from '@components/Button';
 import React, { FC } from 'react';
 import PaginatedGallery from './PaginatedGallery';
+import {useLocation} from "react-router-dom";
+import FlashMessage from "@components/FlashMessage";
 
 interface Props {
   pageTitle?: string,
@@ -9,6 +11,7 @@ interface Props {
 }
 
 const Gallery: FC<Props> = ({pageTitle, items, category}) => {
+  const location = useLocation();
   const reducedList = items.length <= 4;
 
   return (
@@ -24,7 +27,7 @@ const Gallery: FC<Props> = ({pageTitle, items, category}) => {
 
         {
             items.length == 0 ? (
-                <p>La bibliothèque est vide</p>
+                <FlashMessage message={'La bibliothèque est vide'} roleClass={'secondary'}/>
             ) : (
                 <>
                     <PaginatedGallery
@@ -34,7 +37,7 @@ const Gallery: FC<Props> = ({pageTitle, items, category}) => {
                     />
 
                     {
-                        reducedList ?
+                        location.pathname == '/' ?
                         <div className="flex w-full mt-5 flex-wrap justify-end">
                           <Button buttonLabel='Plus' buttonRole='primary' buttonLink='/books'/>
                         </div> : ''

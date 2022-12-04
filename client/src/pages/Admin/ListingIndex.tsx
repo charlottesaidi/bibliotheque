@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import Loader from "@components/Loader";
 import List from "@components/List";
-import ErrorAlert from "@components/ErrorAlert";
+import FlashMessage from "@components/FlashMessage";
 import {get} from "@services/api/ViewerService";
 import Forbidden from "@pages/Error/ForbiddenPage";
 import {isAdmin, useToken} from "@services/api/auth/AuthenticationService";
@@ -47,7 +47,7 @@ const ListingIndex = ({...props}: ApiListingProps) => {
     
     return loading ? <Loader/> :
         !error ? <List items={files} deletePath={props.apiDeletePath}/> :
-            <ErrorAlert message={error}/>
+            <FlashMessage message={error} roleClass={'danger'}/>
 }
 
 export default ListingIndex;

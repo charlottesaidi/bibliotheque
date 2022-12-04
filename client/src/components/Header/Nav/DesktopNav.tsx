@@ -4,6 +4,7 @@ import MenuButton from "@components/Header/MenuButton";
 import Collapsible from "@components/Collapsible";
 import React from "react";
 import Menu from "@components/Header/Nav/Menu";
+import {SlLogout} from "react-icons/sl";
 
 const DesktopNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: any) => {
 
@@ -30,7 +31,7 @@ const DesktopNav = (routes: RoutesProps[], toggleLeftSidebarWidth: any, logOut: 
             </ul>
 
             <button onClick={logOut} className="nav-link hover:bg-cyan-200/20 flex items-center sm:justify-start p-2.5 w-full">
-                <i className={'icon-logout sm:mr-3'}/>
+                <SlLogout className={'sm:mr-3'}/>
                 <span className="nav-link-label logout-label">Déconnexion</span>
             </button>
 

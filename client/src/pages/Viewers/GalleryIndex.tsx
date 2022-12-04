@@ -6,7 +6,7 @@ import CollapsibleItem from "@components/Collapsible/CollapsibleItem";
 import Filter from "@components/Form/FilterForm";
 import Loader from "@components/Loader";
 import Gallery from "@components/Gallery";
-import ErrorAlert from "@components/ErrorAlert";
+import FlashMessage from "@components/FlashMessage";
 
 interface fetchResources {
     apiPath: string,
@@ -37,6 +37,7 @@ const GalleryIndex = ({...props}: fetchResources) => {
         const filters = Object.keys(data)
             .filter((key: keyof typeof data) => Boolean(data[key]))
             .reduce((acc, key) => ({...acc, ...{[key]: data[key]}}), {});
+        sessionStorage.removeItem(props.filterStorageKey)
 
         fetchResources({storageKey: props.filterStorageKey, apiParams: filters});
     }
@@ -44,6 +45,7 @@ const GalleryIndex = ({...props}: fetchResources) => {
     const onReset = () => {
         sessionStorage.removeItem(props.filterStorageKey)
         setResources(JSON.parse(sessionStorage.getItem(props.storageKey) || '{}'))
+        setError('');
     }
 
     useEffect(() => {
@@ -73,7 +75,7 @@ const GalleryIndex = ({...props}: fetchResources) => {
             {
                 loading ? <Loader/> :
                     !error ? <Gallery items={resources} category={props.galleryCategory || ''}/> :
-                        <ErrorAlert message={error}/>
+                        <FlashMessage message={error} roleClass={'danger'}/>
             }
         </>
     )

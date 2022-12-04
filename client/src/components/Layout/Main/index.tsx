@@ -27,7 +27,7 @@ const MainLayout: React.FC<Props> = ({children, withBreadcrumb}) => {
         <>
             <Header />
 
-            <div id="main_container" className={`sm:ml-250 pb-20 pt-8 transition-all duration-300`}>
+            <div id="main_container" className={`sm:ml-250 pb-20 sm:pb-0 pt-6 transition-all duration-300`}>
                 <section className="w-[90%] mx-auto">
                     {withBreadcrumb ?
                         <Breadcrumb/> : ''

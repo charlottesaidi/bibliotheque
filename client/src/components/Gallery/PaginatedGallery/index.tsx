@@ -51,7 +51,7 @@ const PaginatedGallery: FC<Props> = ({itemsPerPage, items, category}) => {
             pageRangeDisplayed={5}
             pageCount={pageCount}
             previousLabel="<"
-            containerClassName={"flex flex-row justify-center items-center mt-5"}
+            containerClassName={"flex flex-row justify-center items-center py-5"}
             pageLinkClassName={paginationLinksClassName}
             previousLinkClassName={paginationLinksClassName}
             nextLinkClassName={paginationLinksClassName}

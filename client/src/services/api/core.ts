@@ -43,7 +43,7 @@ axios.interceptors.response.use((response) => {
             break;
         default:
             errorResponse.code = 500;
-            errorResponse.message = error.response && error.response.data ? error.response.data['message'] || error.response.data['detail']  : error.message || error;
+            errorResponse.message = `${error.response && error.response.data ? error.response.data['message'] || error.response.data['detail']  : error.message || error} : ça déconne quelque part mdr appelle moi`;
     }
     return Promise.reject(errorResponse);
 });

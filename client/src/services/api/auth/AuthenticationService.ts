@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Core, IResponse } from '../core';
 import {FieldValues} from "react-hook-form";
+import {RoutesProps} from "@config/router/router.config";
 
 const api = new Core();
 
@@ -25,6 +26,11 @@ export const isAdmin = (token: string | null) => {
     } else {
         return false;
     }
+}
+
+export const routeAdminAccessible = (route: RoutesProps, token: string | null) => {
+    const admin = isAdmin(token);
+    return !(route.path == '/admin' && !admin);
 }
 
 export const isTokenExpired = (token: string | null) => {

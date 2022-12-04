@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { get } from '@services/api/ViewerService';
 import Loader from '@components/Loader';
-import ErrorAlert from '@components/ErrorAlert';
+import FlashMessage from '@components/FlashMessage';
 import Ebook from '@components/Ebook';
 import {BookFileTypes, VideoFileTypes} from "@constants/resource";
 
@@ -22,7 +22,7 @@ function Viewer(file: any) {
             <div className="mt-3 leading-normal text-blue-700 border border-blue-500" role="info">
                 <p>Composant vidéo en cours de développement...</p>
             </div> :
-                <ErrorAlert message={'Une erreur est survenue : extension de fichier inconnu'}/>
+                <FlashMessage message={'Une erreur est survenue : extension de fichier inconnu'} roleClass={'danger'}/>
 }
 
 const ViewerPage = ({...props}: ApiViewerProps) => {
@@ -58,7 +58,7 @@ const ViewerPage = ({...props}: ApiViewerProps) => {
                     <Loader/>
                     : !error ?
                         Viewer(resource.file)
-                        : <ErrorAlert message={error}/>
+                        : <FlashMessage message={error} roleClass={'danger'}/>
             }
 
         </>
