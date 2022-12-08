@@ -6,16 +6,18 @@ use App\Entity\Book\Book;
 use App\Entity\File;
 use App\Entity\Genre;
 use App\Service\ApiService;
+use App\Service\FileUploader;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 #[Route('api')]
 class BookController extends AbstractController
 {
-    public function __construct(private ManagerRegistry $doctrine, private ApiService $api) {}
+    public function __construct(private ManagerRegistry $doctrine, private ApiService $api, private FileUploader $fileUploader) {}
 
     #[Route('/books', name: 'api_books')]
     public function index(Request $request): JsonResponse
@@ -46,19 +48,18 @@ class BookController extends AbstractController
         try {
             $data = $request->request->all();
 
-            $fileName = explode('.', json_decode($data['file'])->name)[0];
-            $fileType = explode('.', json_decode($data['file'])->name)[1];
-            $cover = json_decode($data['cover']);
-
             $bookRepo = $this->doctrine->getRepository(Book::class);
             $fileRepo = $this->doctrine->getRepository(File::class);
             $genreRepo = $this->doctrine->getRepository(Genre::class);
 
+            $uploadedCover = $this->fileUploader->uploadFile($request->files->get('cover'), $this->getParameter('books_cover_directory'));
+            $uploadedFile = $this->fileUploader->uploadFile($request->files->get('file'), $this->getParameter('ebooks_directory'));
+
             $file = $fileRepo->createFile(
-                $fileType,
-                $fileName,
-                $fileType,
-                json_decode($data['file'])->size
+                $uploadedFile['extension'],
+                $uploadedFile['name'],
+                $uploadedFile['extension'],
+                $uploadedFile['size'],
             );
 
             $genre = $genreRepo->findOneBy(['name' => $data['genre']]);
@@ -67,12 +68,15 @@ class BookController extends AbstractController
                 $data['author'],
                 $data['title'],
                 $file,
-                $cover->path,
+                $uploadedCover['name'],
                 $genre,
                 $data['publicationDate'].'-01-01'
             );
 
             $response->setContent($book->getTitle().' uploadé avec succès');
+            return $response;
+        } catch (FileException $e) {
+            $response->setContent($e->getMessage());
             return $response;
         } catch(throwable $e) {
             $response->setContent($e->getMessage());

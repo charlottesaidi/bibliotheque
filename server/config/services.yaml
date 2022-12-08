@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    ebooks_directory: '%kernel.project_dir%/public/uploads/ebooks'
+    books_cover_directory: '%kernel.project_dir%/public/uploads/images/books'
 
 services:
     # default configuration for services in *this* file
@@ -21,6 +23,9 @@ services:
             - '../src/Kernel.php'
 
     App\Service\ApiService:
+        autowire: true
+
+    App\Service\FileUploader:
         autowire: true
 
     App\EventListener\CorsListener:

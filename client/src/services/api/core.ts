@@ -17,6 +17,15 @@ export interface RequestOptions {
     apiParams?: any
 }
 
+export interface FileData {
+    type: string,
+    name: string,
+    path: string,
+    webkitRelativePath: string,
+    lastModified: number,
+    size: number
+}
+
 axios.interceptors.response.use((response) => {
     return response;
 }, (error) => {
@@ -132,7 +141,7 @@ class Core {
             },
         };
 
-        return axios.post(url, formData, config);
+        return axios.post(url, data, config);
     };
 }
 

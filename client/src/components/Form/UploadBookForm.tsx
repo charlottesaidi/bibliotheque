@@ -6,6 +6,7 @@ import {get} from "@services/api/ViewerService";
 import Select from "@components/Form/FormFields/Select";
 import {FieldErrors, FieldValues, useForm} from "react-hook-form";
 import {Control} from "react-hook-form/dist/types/form";
+import FlashMessage from "@components/FlashMessage";
 
 interface FormProps {
     handleUploadSubmit: any
@@ -40,6 +41,10 @@ const UploadBookForm = ({...props}: FormProps) => {
 
     return (
         <form onSubmit={handleSubmit((data) => {submit(data)})}>
+
+            {/* ToDo*/}
+            <FlashMessage message={'WIP: enregistrement fichier epub non fonctionnel'} roleClass={'warning mb-3'} />
+
             <div className={'flex flex-wrap md:flex-nowrap items-center gap-12'}>
                 <div className={'w-full md:w-1/2'}>
                     <Input

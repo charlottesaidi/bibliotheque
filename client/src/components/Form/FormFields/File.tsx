@@ -25,7 +25,7 @@ const InputFile = ({containerClasses, inputLabel, inputName, register, errors, s
         isDragReject
     } = useDropzone({
             onDrop: files => {
-                setValue(inputName, files);
+                setValue(inputName, files[0]);
             }
         });
 
