@@ -7,7 +7,7 @@ import usePagination from "@hooks/usePagination";
 import {Pagination} from "@mui/material";
 
 interface ListProps {
-    items: any,
+    items?: any,
     deletePath?: string
 }
 
@@ -16,12 +16,12 @@ const List: FC<ListProps> = ({items, deletePath}) => {
     const [page, setPage] = React.useState(1);
     const PER_PAGE = 5;
 
-    const count = Math.ceil(items.length / PER_PAGE);
-    const _DATA = usePagination(items, PER_PAGE);
+    const count = items ? Math.ceil(items.length / PER_PAGE) : 0;
+    const _DATA = items ? usePagination(items, PER_PAGE) : null;
 
     const handleChange = (e: any, p: number) => {
         setPage(p);
-        _DATA.jump(p);
+        _DATA?.jump(p);
     };
 
     return (
@@ -60,7 +60,7 @@ const List: FC<ListProps> = ({items, deletePath}) => {
                                             <ListItem key={item.id} item={item} deletePath={deletePath}></ListItem>
                                         ))
                                     : <>
-                                            {_DATA.currentData().map((item: any) => {
+                                            {_DATA?.currentData().map((item: any) => {
                                                 return (
                                                     <ListItem key={item.id} item={item} deletePath={deletePath}></ListItem>
                                                 )
@@ -75,10 +75,13 @@ const List: FC<ListProps> = ({items, deletePath}) => {
                                                 classes={{root: classes.root, ul: classes.ul}}
                                             />
                                         </>
-                                : <FlashMessage message={'La bibliothèque est vide<'} roleClass={'secondary'}/>
+                                : null
                             }
                             </tbody>
                         </table>
+
+                        {items == undefined || items && items.length == 0 ? <FlashMessage message={'La bibliothèque est vide'} roleClass={'secondary'}/> : null}
+
                     </div>
                 </div>
             </div>
