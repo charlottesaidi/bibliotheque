@@ -13,7 +13,8 @@ module.exports = {
             "@plugins": path.resolve(__dirname, 'src/plugins'),
             "@config": path.resolve(__dirname, 'src/config'),
             "@constants": path.resolve(__dirname, 'src/constants'),
-            "@redux": path.resolve(__dirname, 'src/redux')
+            "@redux": path.resolve(__dirname, 'src/redux'),
+            "@models": path.resolve(__dirname, 'src/models')
         }
     },
     plugins: {
