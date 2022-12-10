@@ -25,7 +25,7 @@ function Gallery<ResourceE extends Book | Movie>({pageTitle, category, resources
                 {
                     resources.map((resource: Book | Movie, index) =>
                         <Link key={index} to={`/${category}/${resource.slug}`} className="group shadow-lg relative overflow-hidden">
-                            <img className="object-cover w-full h-full" src={resource.cover ? require('@assets/images/'+category+'/'+resource.cover) : ''} alt={'Couverture '+resource.title}/>
+                            <img className="object-cover w-full h-full" src={resource.cover ? require('@assets/upload/images/'+category+'/'+resource.cover) : ''} alt={'Couverture '+resource.title}/>
 
                             <div className="absolute top-0 left-0 px-6 py-4 transition-all duration-300 bg-black/70 hover:bg-black/50 w-full h-full">
                                 <h4 className="mb-3 text-xl font-semibold tracking-tight text-white">{resource.title}</h4>
