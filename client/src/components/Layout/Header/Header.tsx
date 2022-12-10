@@ -5,8 +5,8 @@ import {AppDispatch, RootState} from "@redux/store";
 import {changeSidebarType} from "@redux/layout/actions";
 import {SideBarTypes} from "@constants/layout";
 import {routes} from "@config/router/routes";
-import DesktopNav from "@components/Header/Nav/DesktopNav";
-import MobileNav from "@components/Header/Nav/MobileNav";
+import DesktopNav from "@components/Layout/Header/Nav/DesktopNav";
+import MobileNav from "@components/Layout/Header/Nav/MobileNav";
 
 const Header: FC = () => {
   const dispatch = useDispatch<AppDispatch>();

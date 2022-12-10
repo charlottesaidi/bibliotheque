@@ -1,23 +1,16 @@
 import Input from "@components/Form/FormFields/Input";
 import Button from "@components/Button";
 import React from "react";
-import {useForm} from "react-hook-form";
 import PasswordInput from "@components/Form/FormFields/Password";
+import {RenderFormProps} from "@components/Form/FormController";
+import {Entity} from "@models/interface/entity";
+import {User} from "@models/User";
 
-interface LoginFormProps {
-    handleLoginSubmit: any
-}
+type LoginFormProps<ResourceE extends Entity> = RenderFormProps<ResourceE>
 
-const LoginForm = ({handleLoginSubmit}: LoginFormProps) => {
-    const methods = useForm({});
-    const {
-        handleSubmit,
-        register,
-        control,
-    } = methods;
-
+function LoginForm<ResourceE extends User>({register, control}: LoginFormProps<ResourceE>) {
     return (
-        <form onSubmit={handleSubmit(handleLoginSubmit)} name="loginForm" className="flex flex-col mt-4">
+        <>
 
             <Input
                 containerClasses={"my-5"}
@@ -46,7 +39,7 @@ const LoginForm = ({handleLoginSubmit}: LoginFormProps) => {
                     <Link to={"/"} className="ml-1 font-medium primary-link">Mot de passe oublié ?</Link>
                 </p> */}
             </div>
-        </form>
+        </>
     )
 }
 

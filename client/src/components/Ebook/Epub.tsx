@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {ReactReader} from "react-reader"
-import {useWindowSize} from "@hooks/windowSize.ts";
+import {useWindowSize} from "@hooks/windowSize";
 import styled from "styled-components";
 
 interface Props {
@@ -54,16 +54,13 @@ const Ebook: FC<Props> = ({filePath}) => {
                     rendition.themes.register('custom', {
                         '*': {
                             color: '#cecece',
-                            'background-color': "transparent",
+                            'background-color': "transparent !important",
                         },
                         body: {
                             'padding-top': '0 !important',
                             'padding-bottom': '0 !important',
                             'padding-left': '0 !important',
                             'padding-right': '0 !important'
-                        },
-                        img: {
-                            border: '1px solid red'
                         },
                         h1: {
                             'font-size': '1em !important'
@@ -75,7 +72,7 @@ const Ebook: FC<Props> = ({filePath}) => {
                         }
                     })
                     rendition.themes.select('custom')
-                    console.log(rendition)
+                    rendition.display()
                 }}
                 tocChanged={toc => (tocRef.current = toc)}
             />
@@ -87,9 +84,8 @@ const Ebook: FC<Props> = ({filePath}) => {
 const PageChapter = styled.p`
     position: absolute;
     top: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
     z-index: 1;
+    width: 100%;
     text-align: center;
 `
 

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {DocumentLoadEvent, PageChangeEvent, SpecialZoomLevel, Viewer, Worker} from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
 import '@react-pdf-viewer/page-navigation/lib/styles/index.css';
-import {useWindowSize} from "@hooks/windowSize.ts";
+import {useWindowSize} from '@hooks/windowSize';
 
 interface Props {
     filePath: string

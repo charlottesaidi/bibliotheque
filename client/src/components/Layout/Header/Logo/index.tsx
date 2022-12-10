@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 
-interface Props {}
-
-const Logo: FC<Props> = () => (
+const Logo = () => (
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" className="w-10 h-10" xmlSpace="preserve">
         <circle style={{fill:'#059669'}} cx="256" cy="256" r="256"/>
         <path style={{fill:'#064e3b'}} d="M510.178,225.445l-83.223-83.223L85.333,357.279l154.178,154.177

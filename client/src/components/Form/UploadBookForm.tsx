@@ -4,26 +4,15 @@ import Button from "@components/Button";
 import InputFile from "@components/Form/FormFields/File";
 import {get} from "@services/api/ViewerService";
 import Select from "@components/Form/FormFields/Select";
-import {FieldErrors, FieldValues, useForm} from "react-hook-form";
-import {Control} from "react-hook-form/dist/types/form";
 import FlashMessage from "@components/FlashMessage";
+import {Book} from "@models/Book";
+import {Entity} from "@models/interface/entity";
+import {RenderFormProps} from "@components/Form/FormController";
 
-interface FormProps {
-    handleUploadSubmit: any
-}
+type FormProps<ResourceE extends Entity> = RenderFormProps<ResourceE>
 
-const UploadBookForm = ({...props}: FormProps) => {
+function UploadBookForm<ResourceE extends Book>({register, errors, control, setValue}: FormProps<ResourceE>) {
     const [genres, setGenres] = React.useState<any>();
-
-    const methods = useForm({});
-    const {
-        handleSubmit,
-        register,
-        control,
-        setValue,
-        formState: { errors },
-        reset,
-    } = methods;
 
     useEffect(() => {
         const getGenres = async () => {
@@ -34,14 +23,8 @@ const UploadBookForm = ({...props}: FormProps) => {
         getGenres();
     }, [])
 
-    const submit = (data: FieldValues) => {
-        props.handleUploadSubmit(data)
-        reset();
-    }
-
     return (
-        <form onSubmit={handleSubmit((data) => {submit(data)})}>
-
+        <>
             {/* ToDo*/}
             <FlashMessage message={'WIP: enregistrement fichier epub non fonctionnel'} roleClass={'warning mb-3'} />
 
@@ -104,7 +87,7 @@ const UploadBookForm = ({...props}: FormProps) => {
                     <Button buttonRole={"primary"} buttonType={"submit"} buttonLabel={"Enregistrer"}/>
                 </div>
             </div>
-        </form>
+        </>
     )
 }
 

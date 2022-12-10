@@ -1,5 +1,5 @@
 import {RoutesProps} from "@config/router/router.config";
-import LinkNav from "@components/Header/Link";
+import LinkNav from "@components/Layout/Header/NavLink";
 import React from "react";
 import {SlLogout} from "react-icons/sl";
 

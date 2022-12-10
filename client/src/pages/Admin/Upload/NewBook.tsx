@@ -1,12 +1,11 @@
 import React  from 'react';
-import {useForm} from "react-hook-form";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import UploadBookForm from "@components/Form/UploadBookForm";
 import {upload} from "@services/api/ViewerService";
-import Loader from "@components/Loader";
+import Loader from "@components/Ui/Loader";
 import {isAdmin, useToken} from "@services/api/auth/AuthenticationService";
 import Forbidden from "@pages/Error/ForbiddenPage";
-import {FileData} from "@services/api/core";
+import FormController from "@components/Form/FormController";
 
 const NewBook = () => {
     const { token } = useToken();
@@ -40,11 +39,12 @@ const NewBook = () => {
     return (
         <div className={''}>
 
-            <ToastContainer />
-
             {loading ? <Loader /> : null}
 
-            <UploadBookForm handleUploadSubmit={submit} />
+            <FormController
+                handleSubmitEvent={submit}
+                renderForm={(props) => <UploadBookForm {...props}/>}
+            />
         </div>
     )
 }

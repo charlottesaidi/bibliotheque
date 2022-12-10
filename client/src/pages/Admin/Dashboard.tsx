@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Loader from '@components/Loader';
+import Loader from '@components/Ui/Loader';
 import FlashMessage from '@components/FlashMessage';
 import {isAdmin, useToken} from '@services/api/auth/AuthenticationService';
 import {Link} from 'react-router-dom';
@@ -27,9 +27,9 @@ const Dashboard: React.FC = () => {
         const tvShows = sessionStorage.getItem('tvShows');
         const movies = sessionStorage.getItem('movies');
 
-        folderArray.push({'label': 'eBooks', 'files': books, 'link': 'books'});
-        folderArray.push({'label': 'Films', 'files': movies, 'link': 'movies'});
-        folderArray.push({'label': 'Série', 'files': tvShows, 'link': 'shows'});
+        folderArray.push({'label': 'eBooks', 'files': books, 'link': 'livres'});
+        folderArray.push({'label': 'Films', 'files': movies, 'link': 'films'});
+        folderArray.push({'label': 'Série', 'files': tvShows, 'link': 'series'});
 
         setFolders(folderArray);
 

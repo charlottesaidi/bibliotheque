@@ -1,10 +1,11 @@
-import AuthLayout from "@components/Layout/Auth";
+import AuthLayout from "@components/Layout/AuthLayout";
 import React from "react";
 import { loginUser } from "@services/api/auth/AuthenticationService";
-import Loader from "@components/Loader";
+import Loader from "@components/Ui/Loader";
 import {FieldValues} from "react-hook-form";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import LoginForm from "@components/Form/LoginForm";
+import FormController from "@components/Form/FormController";
 
 interface Props {
     setToken: any
@@ -34,13 +35,14 @@ const Login: React.FC<Props> = ({setToken}) => {
         <AuthLayout>
             <div className="w-full mx-auto my-3">
 
-                <ToastContainer />
-
                 <h1 className="text-lg font-bold">Connexion</h1>
 
                 {loading ? <Loader /> : null}
 
-                <LoginForm handleLoginSubmit={login} />
+                <FormController
+                    renderForm={(props) => <LoginForm {...props} />}
+                    handleSubmitEvent={login}
+                />
 
             </div>
         </AuthLayout>

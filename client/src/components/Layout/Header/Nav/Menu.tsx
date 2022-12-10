@@ -1,6 +1,6 @@
 import {RoutesProps} from "@config/router/router.config";
-import CollapsibleItem from "@components/Collapsible/CollapsibleItem";
-import LinkNav from "@components/Header/Link";
+import CollapsibleItem from "@components/Collapsible/CollaspibleItem";
+import LinkNav from "@components/Layout/Header/NavLink";
 import React from "react";
 import {useLocation} from "react-router-dom";
 import {routeAdminAccessible, useToken} from "@services/api/auth/AuthenticationService";

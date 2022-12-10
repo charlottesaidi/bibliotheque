@@ -1,17 +1,17 @@
 import React from "react";
 import Input from "@components/Form/FormFields/Input";
-import {parseJwt} from "@services/api/auth/AuthenticationService";
 import PasswordInput from "@components/Form/FormFields/Password";
-import PasswordStrengthBar from "@components/ProgressBar/PasswordStrengthBar";
+import PasswordStrengthBar from "@components/Ui/ProgressBar/PasswordStrengthBar";
 import Button from "@components/Button";
-import {useForm} from "react-hook-form";
+import {RenderFormProps} from "@components/Form/FormController";
+import {Entity} from "@models/interface/entity";
+import {User} from "@models/User";
 
-interface ProfileFormProps {
-    user: string
-    handleProfileSubmit: any
+interface ProfileFormProps<ResourceE extends Entity> extends RenderFormProps<ResourceE> {
+    loggedUser: string
 }
 
-const ProfileForm = ({...props}: ProfileFormProps) => {
+function ProfileForm<ResourceE extends User>({register, control, loggedUser}: ProfileFormProps<ResourceE>) {
     const [password, setPassword] = React.useState("");
     const [validate, setValidate] = React.useState({
         hasLow: false,
@@ -22,13 +22,6 @@ const ProfileForm = ({...props}: ProfileFormProps) => {
 
     // @ts-ignore
     const strength = Object.values(validate).reduce((a, item) => a + item, 0);
-
-    const methods = useForm({});
-    const {
-        handleSubmit,
-        register,
-        control,
-    } = methods;
 
     const handleChangePassword = (e: any) => {
         setPassword(e.target.value);
@@ -43,14 +36,14 @@ const ProfileForm = ({...props}: ProfileFormProps) => {
     };
 
     return (
-        <form onSubmit={handleSubmit(props.handleProfileSubmit)} name="loginForm" className="flex flex-col mt-4 md:px-10 px-3">
+        <>
 
             <div className={'flex md:flex-row flex-col'}>
                 <Input
                     containerClasses={"my-5 md:w-1/2 w-full md:pr-10 pr-0"}
                     inputType={"email"}
                     inputName={"new_email"}
-                    inputValue={props.user}
+                    inputValue={loggedUser}
                     inputLabel={"Modifier l'adresse email"}
                     register={register}
                     control={control}
@@ -98,7 +91,7 @@ const ProfileForm = ({...props}: ProfileFormProps) => {
                 </div>
             </div>
 
-        </form>
+        </>
     )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Error from '@components/Layout/Error';
+import Error from '@components/Layout/ErrorLayout';
 
 const Forbidden: React.FC = () => {
 

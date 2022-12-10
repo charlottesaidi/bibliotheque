@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import { get } from '@services/api/ViewerService';
-import Loader from '@components/Loader';
+import Loader from '@components/Ui/Loader';
 import FlashMessage from '@components/FlashMessage';
 import Ebook from '@components/Ebook';
 import {BookFileTypes, VideoFileTypes} from "@constants/resource";

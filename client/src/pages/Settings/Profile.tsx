@@ -1,9 +1,10 @@
 import React from "react";
-import Loader from "@components/Loader";
+import Loader from "@components/Ui/Loader";
 import {FieldValues} from "react-hook-form";
 import {parseJwt, resetPassword, useToken} from "@services/api/auth/AuthenticationService";
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import ProfileForm from "@components/Form/ProfileForm";
+import FormController from "@components/Form/FormController";
 
 export  const Profile = () => {
     const [loading, setLoading] = React.useState(false);
@@ -32,9 +33,10 @@ export  const Profile = () => {
         <>
             {loading ? <Loader /> : null}
 
-            <ToastContainer />
-
-            <ProfileForm user={parseJwt(token).username} handleProfileSubmit={updateProfile} />
+            <FormController
+                renderForm={(props) => <ProfileForm {...props} loggedUser={parseJwt(token).username} />}
+                handleSubmitEvent={updateProfile}
+            />
         </>
     )
 }

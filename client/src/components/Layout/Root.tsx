@@ -1,4 +1,4 @@
-import MainLayout from "@components/Layout/Main";
+import MainLayout from "@components/Layout/AppLayout";
 import {Outlet, useLocation} from "react-router-dom";
 import React from "react";
 import {isTokenExpired, useToken} from "@services/api/auth/AuthenticationService";
