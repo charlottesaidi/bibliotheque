@@ -66,7 +66,7 @@ Apache to run the application.
 Install node module dependencies:
 
 ```cmd
-npm install
+yarn install
 ```
 
 ### Usage
@@ -74,7 +74,7 @@ npm install
 For the dev server run:
 
 ```cmd
-npm start
+yarn start
 ```
 
 Navigate to `http://localhost:3000`. The application will automatically reload if you change any of the source files.
