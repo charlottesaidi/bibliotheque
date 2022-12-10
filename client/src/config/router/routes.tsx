@@ -6,12 +6,19 @@ import NotFound from "@pages/Error/NotFoundPage";
 import Home from "@pages/Home";
 import Dashboard from "@pages/Admin/Dashboard";
 import NewBook from "@pages/Admin/Upload/NewBook";
-import ListingIndex from "@pages/Admin/ListingIndex";
-import GalleryIndex from "@pages/Viewers/GalleryIndex";
 import Viewer from "@pages/Viewers/Viewer";
-import SettingIndex from "@pages/Settings/SettingIndex";
 import Tabs from "@components/Tabs";
 import {SlBookOpen, SlFolderAlt, SlSettings} from "react-icons/sl";
+import ListingController from "@components/ListingController";
+import BookStorageData from "@services/Data/BookStorageData";
+import MovieStorageData from "@services/Data/MovieStorageData";
+import Gallery from "@components/Gallery";
+import FilterForm from "@components/Form/FilterForm";
+import List from "@components/List";
+import {Profile} from "@pages/Settings/Profile";
+
+const bookData = BookStorageData;
+const movieData = MovieStorageData;
 
 export const routes: RoutesProps[] = [
     {
@@ -21,9 +28,18 @@ export const routes: RoutesProps[] = [
         icon: <SlBookOpen className={'sm:mr-3'}/>,
         children: [
             {path: '/', name: 'Accueil', element: <Home/>},
-            {path: '/books', name: 'eBooks', children: [
-                    {path: '/books', element: <GalleryIndex apiPath={'/books'} storageKey={'books'} filterStorageKey={'filteredBooks'} galleryCategory={'livres'}/>},
-                    {path: '/books/:slug', element: <Viewer apiPath={'/book'} />}
+            {path: '/livres', name: 'eBooks', children: [
+                    {
+                        path: '/livres',
+                        element: <ListingController
+                            data={bookData}
+                            category={'livres'}
+                            renderListing={(props) => <Gallery {...props} />}
+                            renderFilter={(props) => <FilterForm {...props} />}
+                            paginated={true}
+                        />
+                    },
+                    {path: '/livres/:slug', element: <Viewer apiPath={'/book'} />}
                 ]
             },
         ],
@@ -37,14 +53,19 @@ export const routes: RoutesProps[] = [
         children: [
             {path: '/admin', name: 'Dashboard', element: <Dashboard/>},
             {
-                path: '/admin/books',
+                path: '/admin/livres',
                 name: 'eBooks',
                 element: <Tabs
                     tabs={[
                         {
                             title: "Liste",
-                            render: () => <ListingIndex apiGetPath={'/books'} key={'books'} apiDeletePath={'/book'}/>
-
+                            render: () =>
+                                <ListingController
+                                    renderListing={(props) => <List {...props}/>}
+                                    renderFilter={(props) => <FilterForm {...props} />}
+                                    data={bookData}
+                                    paginated={true}
+                                />
                         },
                         {
                             title: "Upload",
@@ -54,14 +75,17 @@ export const routes: RoutesProps[] = [
                 />
             },
             {
-                path: '/admin/movies',
+                path: '/admin/films',
                 name: 'Films',
                 element: <Tabs
                     tabs={[
                         {
                             title: "Liste",
-                            render: () => <ListingIndex apiGetPath={'/movies'} key={'movies'}/>
-
+                            render: () =>
+                                <ListingController
+                                    renderListing={(props) => <List {...props}/>}
+                                    data={movieData}
+                                />
                         },
                         {
                             title: "Upload",
@@ -71,13 +95,13 @@ export const routes: RoutesProps[] = [
                 />
             },
             {
-                path: '/admin/shows',
+                path: '/admin/series',
                 name: 'Séries',
                 element:  <Tabs
                     tabs={[
                         {
                             title: "Liste",
-                            render: () => <ListingIndex apiGetPath={'/shows'} key={'shows'}/>
+                            render: () => <></>
 
                         },
                         {
@@ -96,7 +120,19 @@ export const routes: RoutesProps[] = [
         icon: <SlSettings className={'sm:mr-3'}/>,
         name: 'Paramètres',
         children: [
-            {path: '/settings', name: 'Profil', element: <SettingIndex/>},
+            {
+                path: '/settings',
+                name: 'Profil',
+                element: <Tabs
+                    tabs={[
+                        {
+                            title: "Identifiants",
+                            render: () => <Profile/>
+
+                        },
+                    ]}
+                />
+            },
         ],
         errorElement: <NotFound/>
     }

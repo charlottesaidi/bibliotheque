@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import Gallery from '@components/Gallery';
 import {get} from '@services/api/ViewerService';
-import Loader from '@components/Loader';
+import Loader from '@components/Ui/Loader';
 import FlashMessage from '@components/FlashMessage';
+import Button from "@components/Button";
 
 const requestOptions = {
     storageKey: 'latestPublications',
@@ -37,7 +38,14 @@ const Home = () => {
                     !error ?
                         latestPublications.map((publication: any) => (
                             <section key={publication.category} className={'pb-10'}>
-                                <Gallery pageTitle={publication.name} items={publication.items} category={publication.category}/>
+                                <Gallery pageTitle={publication.name} resources={publication.items} category={publication.category}/>
+                                {
+                                    publication.items.length > 0 ?
+                                        <div className="flex w-full mt-5 flex-wrap justify-end">
+                                            <Button buttonLabel='...' buttonRole='primary' buttonLink={`/${publication.category}`}/>
+                                        </div>
+                                        : <FlashMessage message={'La bibliothèque est vide'} roleClass={'secondary'}/>
+                                }
                             </section>
                         ))
                         :
